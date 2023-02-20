@@ -4,7 +4,7 @@ const {
   createLogo,
   createForm,
   createTableWrapper,
-  createRow
+  createRow,
 } = createElement;
 
 export const renderTodo = (app) => {
@@ -13,9 +13,20 @@ export const renderTodo = (app) => {
   const {form, saveBtn, clearBtn} = formBlock;
   const tableWrapper = createTableWrapper();
 
-  // const {tHead, tBody} = tableWrapper;
+  const {tableWrapper: tWrapper, tBody} = tableWrapper;
 
-  app.append(logo, form, tableWrapper);
+  app.append(logo, form, tWrapper);
 
-  // return {saveBtn, clearBtn, tHead, tBody};
+  return {saveBtn, clearBtn, tBody};
+};
+
+export const renderItems = (storage, $) => {
+  while ($.tBody.firstChild) {
+    $.tBody.removeChild($.tBody.firstChild);
+  }
+
+  Object.values(storage.data).forEach(value => {
+    const row = createRow(value);
+    $.tBody.append(row);
+  });
 };

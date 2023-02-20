@@ -11,3 +11,34 @@
     font-weight: 700;
     font-display: swap;
 }
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo__title {
+    margin-bottom: 8px;
+    text-align: center;
+    font-size: calc(1.3rem + .6vw);
+}
+
+.todo__form {
+    display: flex;
+    column-gap: 16px;
+    margin-bottom: 16px;
+    justify-content: center;
+}
+
+.form__input {
+    max-width: 207px;
+}
+
+.form__submit {
+    max-width: 109px;
+}
+
+.todo__table-wrapper {
+    min-width: 464px;
+}

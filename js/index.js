@@ -1,17 +1,21 @@
 import {renderTodo} from "./modules/render.js";
-
+import storage from "./modules/storage.js";
+import {authorizeUser} from './modules/authorize.js';
 {
-  const init = (selectorApp) => {
-    const app = document.querySelector(selectorApp);
-
+  const init = (appSelector, appName) => {
+    const app = document.querySelector(appSelector);
     const todo = renderTodo(app);
 
     //variables
-    // const {} = todo;
-    // const generalVars = {};
+    const {saveBtn, clearBtn, tBody} = todo;
+    const generalVars = {saveBtn, clearBtn, tBody, appName};
 
     //functionality
 
+
+    //start method
+    generalVars.userName =  authorizeUser();
+    storage.handleStorage(generalVars);
   };
 
   window.todoAppInit = init;

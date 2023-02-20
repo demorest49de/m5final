@@ -32,11 +32,11 @@ const createButtons = () => {
   const saveBtn = document.createElement('button');
   saveBtn.classList.add('form__submit', 'btn', 'btn-primary', 'me-3');
   saveBtn.type = 'submit';
-  saveBtn.textContent = 'Сохранить';
+  saveBtn.textContent = ' Сохранить ';
   const clearBtn = document.createElement('button');
   clearBtn.classList.add('form__reset', 'btn', 'btn-warning');
   clearBtn.type = 'reset';
-  clearBtn.textContent = 'Очистить';
+  clearBtn.textContent = ' Очистить ';
 
   return {
     saveBtn,
@@ -45,11 +45,52 @@ const createButtons = () => {
 };
 
 const createTableWrapper = () => {
+  const tableWrapper = document.createElement('div');
+  tableWrapper.classList.add('todo__table-wrapper');
 
+  const table = document.createElement('table');
+  table.classList.add('todo__table', 'table', 'table-hover', 'table-bordered',);
+  table.insertAdjacentHTML("beforeend",
+    `
+      <thead>
+        <tr>
+          <th>№</th>
+          <th>Задача</th>
+          <th>Статус</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+    `);
+
+  const tBody = document.createElement('tbody');
+  tBody.classList.add('table-light');
+  table.append(tBody);
+  tableWrapper.append(table);
+  return {tableWrapper, tBody};
+};
+
+const createRow = (
+  {
+    id, text, status
+  }) => {
+
+  const  tr = document.createElement('tr');
+  tr.classList.add('table-light');
+  tr.insertAdjacentHTML('beforeend',
+    `
+      <td>${id}</td>
+      <td class="todo__task">${text}</td>
+      <td>${status}</td>
+      <td>
+        <button></button>
+      </td>
+    `);
+  return tr;
 };
 
 export default {
   createLogo,
   createForm,
-  createTableWrapper
+  createTableWrapper,
+  createRow,
 };
