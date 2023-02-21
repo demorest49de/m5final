@@ -8,7 +8,7 @@ import {authorizeUser} from './modules/authorize.js';
 
     //variables
     const {saveBtn, clearBtn, tBody} = todo;
-    const generalVars = {saveBtn, clearBtn, tBody, appName};
+    const generalVars = {saveBtn, clearBtn, tBody, appName, app};
 
     //functionality
 

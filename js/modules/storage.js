@@ -10,8 +10,13 @@ export const saveStorage = (storage, userName) => {
 
 const handleStorage = ($) => {
   const storage = getStorage($.appName);
+
   if (storage.data.length === 0) return;
   renderItems(storage, $);
+};
+
+const getUser = () => {
+
 };
 
 export default {
