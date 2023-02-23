@@ -1,6 +1,5 @@
 import {getStorage, saveStorge} from "./storage.js";
 import createElement from './createElement.js';
-import {getUser} from "./handleUser.js";
 
 const {createRow} = createElement;
 
@@ -20,12 +19,14 @@ const submitFormData = ($) => {
     const user = $.user;
     user.tasks.push(task);
 
-    const row = createRow(task);
+    const row = createRow(task, user.tasks.length);
     const updatedStorage = udpateUserDataInStorage(storage, user);
     saveStorge(updatedStorage, $.appName);
     $.tBody.append(row);
 
     saveStorge(storage, $.appName);
+    $.form.reset();
+    $.form.querySelector('.form__submit').setAttribute('disabled', '');
   });
 };
 
@@ -50,27 +51,6 @@ const handleTaskInput = ($) => {
     }
   });
 };
-
-// bind different from enter key to submit form
-// const handleSubmitOnEnter = ($) => {
-//   $.form.text.addEventListener('keypress', e => {
-//     // console.log(': ',e.code);
-//     if (e.code === 'KeyE' && e.target.value.length > 0) {
-//       const form = $.form;
-//       form.submit();
-//       form.method = 'post';
-//
-//       console.log(': ',form.text.value);
-//
-//       const storage = getStorage($.appName);
-//       const task = {
-//         id: createElement.createId(),
-//         text: data.text,
-//         status: 'В процессе',
-//       };
-//     }
-//   });
-// };
 
 export default {
   submitFormData,

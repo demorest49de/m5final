@@ -71,13 +71,13 @@ const createTableWrapper = () => {
   return {tableWrapper, tBody};
 };
 
-const createRow = ({id, text, status}) => {
+const createRow = ({id, text, status}, count) => {
 
   const tr = document.createElement('tr');
   tr.classList.add('table-light');
   tr.insertAdjacentHTML('beforeend',
     `
-      <td>${id}</td>
+      <td>${count}</td>
       <td class="todo__task">${text}</td>
       <td>${status}</td>
       <td>

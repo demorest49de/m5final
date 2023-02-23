@@ -25,8 +25,8 @@ export const renderItems = (tasks, $) => {
     $.tBody.removeChild($.tBody.firstChild);
   }
 
-  Object.values(tasks).forEach(task => {
-    const row = createRow(task);
+  Object.values(tasks).forEach((task, index) => {
+    const row = createRow(task, index + 1);
     $.tBody.append(row);
   });
 };
