@@ -81,7 +81,8 @@ const createRow = ({id, text, status}) => {
       <td class="todo__task">${text}</td>
       <td>${status}</td>
       <td>
-        <button></button>
+        <button class="btn btn-danger"> Удалить </button>
+        <button class="btn btn-success"> Завершить </button>
       </td>
     `);
   return tr;
