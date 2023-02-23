@@ -15,6 +15,7 @@ import control from './modules/control.js';
     //functionality
     control.submitFormData(generalVars);
     control.handleTaskInput(generalVars);
+    control.handleResetFormButton(generalVars);
 
     //start method
     generalVars.userName = authorizeUser();

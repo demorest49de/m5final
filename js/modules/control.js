@@ -33,8 +33,8 @@ const submitFormData = ($) => {
 const udpateUserDataInStorage = (storage, user) => {
   return storage.data.map(item => {
     const {name, tasks} = item;
-    console.log(': ',item);
-    if(name === user.name){
+    console.log(': ', item);
+    if (name === user.name) {
       item.tasks = user.tasks;
     }
     return item;
@@ -52,7 +52,17 @@ const handleTaskInput = ($) => {
   });
 };
 
+const handleResetFormButton = ($) => {
+  $.form.addEventListener('click', e => {
+    const target = e.target;
+    if (target === $.clearBtn) {
+      $.saveBtn.setAttribute('disabled', '');
+    }
+  });
+};
+
 export default {
   submitFormData,
   handleTaskInput,
+  handleResetFormButton
 };

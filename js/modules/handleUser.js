@@ -1,7 +1,7 @@
 import {saveStorge} from "./storage.js";
 
 export const authorizeUser = () => {
-  //todo доработать метод
+
 
   // const userName = prompt(`Введите имя пользователя:`).trim();
   //
@@ -16,7 +16,7 @@ export const authorizeUser = () => {
   //     return userName;
   // }
 
-  return 'petja';
+  return 'vasja';
 };
 
 export const getUser = (storage, $) => {
