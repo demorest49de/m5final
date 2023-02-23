@@ -18,6 +18,7 @@ const createForm = () => {
   const input = document.createElement('input');
   input.classList.add('form__input', 'form-control');
   input.type = 'text';
+  input.name = 'text';
   input.placeholder = 'ввести задачу';
 
   label.append(input);
@@ -33,6 +34,7 @@ const createButtons = () => {
   saveBtn.classList.add('form__submit', 'btn', 'btn-primary', 'me-3');
   saveBtn.type = 'submit';
   saveBtn.textContent = ' Сохранить ';
+  saveBtn.setAttribute('disabled', '');
   const clearBtn = document.createElement('button');
   clearBtn.classList.add('form__reset', 'btn', 'btn-warning');
   clearBtn.type = 'reset';
@@ -69,12 +71,9 @@ const createTableWrapper = () => {
   return {tableWrapper, tBody};
 };
 
-const createRow = (
-  {
-    id, text, status
-  }) => {
+const createRow = ({id, text, status}) => {
 
-  const  tr = document.createElement('tr');
+  const tr = document.createElement('tr');
   tr.classList.add('table-light');
   tr.insertAdjacentHTML('beforeend',
     `
@@ -88,9 +87,14 @@ const createRow = (
   return tr;
 };
 
+const createId = () => {
+  return Math.random().toString().substring(2, 10);
+};
+
 export default {
   createLogo,
   createForm,
   createTableWrapper,
   createRow,
+  createId,
 };

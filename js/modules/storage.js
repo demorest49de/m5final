@@ -1,7 +1,8 @@
 import {renderItems} from './render.js';
+import {getUser} from "./handleUser.js";
 
 export const getStorage = (appName) => {
-  return JSON.parse(localStorage.getItem(appName)) || {};
+  return JSON.parse(localStorage.getItem(appName)) || {data: []};
 };
 
 export const saveStorge = (storage, appName) => {
@@ -10,15 +11,11 @@ export const saveStorge = (storage, appName) => {
 
 const handleStorage = ($) => {
   const storage = getStorage($.appName);
-  getUser(storage, $.userName)
-  if (storage.data.length === 0) return;
-  renderItems(storage, $.userName);
-};
-
-const getUser = (storage, userName) => {
-  Object.entries(storage).forEach((key, value) => {
-    console.log(': ',key, value);
-  });
+  const userName = $.app.querySelector('.todo__title');
+  userName.textContent += `, ${$.userName}`;
+  const user = getUser(storage, $);
+  $.user = user;
+  if (user.tasks.length > 0) renderItems(user.tasks, $);//todo finish renderItems
 };
 
 export default {

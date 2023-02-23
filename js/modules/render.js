@@ -17,16 +17,16 @@ export const renderTodo = (app) => {
 
   app.append(logo, form, tWrapper);
 
-  return {saveBtn, clearBtn, tBody};
+  return {saveBtn, clearBtn, tBody, form};
 };
 
-export const renderItems = (storage, $) => {
+export const renderItems = (tasks, $) => {
   while ($.tBody.firstChild) {
     $.tBody.removeChild($.tBody.firstChild);
   }
 
-  Object.values(storage.data).forEach(value => {
-    const row = createRow(value);
+  Object.values(tasks).forEach(task => {
+    const row = createRow(task);
     $.tBody.append(row);
   });
 };
