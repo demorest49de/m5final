@@ -15,7 +15,7 @@ const handleStorage = ($) => {
   userName.textContent += `, ${$.userName}`;
   const user = getUser(storage, $);
   $.user = user;
-  if (user.tasks.length > 0) renderItems(user.tasks, $);//todo finish renderItems
+  if (user.tasks.length > 0) renderItems(user.tasks, $);
 };
 
 export default {

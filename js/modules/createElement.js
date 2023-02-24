@@ -65,19 +65,19 @@ const createTableWrapper = () => {
     `);
 
   const tBody = document.createElement('tbody');
-  tBody.classList.add('table-light');
   table.append(tBody);
   tableWrapper.append(table);
   return {tableWrapper, tBody};
 };
 
-const createRow = ({id, text, status}, count) => {
+const createRow = ({id, text, status}) => {
 
   const tr = document.createElement('tr');
   tr.classList.add('table-light');
   tr.insertAdjacentHTML('beforeend',
     `
-      <td>${count}</td>
+      <td class="hide-element" data-id="${id}"></td>
+      <td></td>
       <td class="todo__task">${text}</td>
       <td>${status}</td>
       <td>

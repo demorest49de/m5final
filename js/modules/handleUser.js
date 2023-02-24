@@ -22,8 +22,8 @@ export const authorizeUser = () => {
 export const getUser = (storage, $) => {
   let user;
   Object.values(storage.data).forEach(userItem => {
-    const {name, tasks} = userItem;
-    if (name === $.userName) {
+
+    if (userItem.name === $.userName) {
       user = userItem;
       return;
     }

@@ -1,5 +1,6 @@
 import {getStorage, saveStorge} from "./storage.js";
 import createElement from './createElement.js';
+import {getUser} from './handleUser.js';
 
 const {createRow} = createElement;
 
@@ -19,10 +20,11 @@ const submitFormData = ($) => {
     const user = $.user;
     user.tasks.push(task);
 
-    const row = createRow(task, user.tasks.length);
-    const updatedStorage = udpateUserDataInStorage(storage, user);
-    saveStorge(updatedStorage, $.appName);
+    const row = createRow(task);
+    udpateUserDataInStorage(storage, user);
+    saveStorge(storage, $.appName);
     $.tBody.append(row);
+    renumerateTable($.tBody);
 
     saveStorge(storage, $.appName);
     $.form.reset();
@@ -31,14 +33,14 @@ const submitFormData = ($) => {
 };
 
 const udpateUserDataInStorage = (storage, user) => {
-  return storage.data.map(item => {
+  storage.data = storage.data.map(item => {
     const {name, tasks} = item;
-    console.log(': ', item);
     if (name === user.name) {
       item.tasks = user.tasks;
     }
     return item;
   });
+  return storage;
 };
 
 const handleTaskInput = ($) => {
@@ -61,8 +63,43 @@ const handleResetFormButton = ($) => {
   });
 };
 
+const deleteRow = ($) => {
+  $.tBody.addEventListener('click', e => {
+    const target = e.target;
+    if (target.closest('.btn.btn-danger')) {
+      const row = target.closest('.table-light');
+      row.remove();
+
+      const storage = getStorage($.appName);
+      const taskId = row.querySelector('td[data-id]').getAttribute('data-id');
+      const user = getUser(storage, $);
+      user.tasks = removeTaskFromUser(user.tasks, taskId);
+      udpateUserDataInStorage(storage, user);
+      saveStorge(storage, $.appName);
+
+      renumerateTable($.tBody);
+    }
+  });
+};
+
+const renumerateTable = (tBody) => {
+  const tds = tBody.querySelectorAll('td:nth-child(2)');
+  let count = 1;
+  for (const td of tds) {
+    td.textContent = count;
+    count++;
+  }
+};
+
+const removeTaskFromUser = (tasks, taskId) => {
+  tasks = tasks.filter(x => x.id !== taskId);
+  return tasks;
+};
+
 export default {
   submitFormData,
   handleTaskInput,
-  handleResetFormButton
+  handleResetFormButton,
+  deleteRow,
+  renumerateTable,
 };

@@ -1,4 +1,6 @@
 import createElement from './createElement.js';
+import control from './control.js';
+const {renumerateTable} = control;
 
 const {
   createLogo,
@@ -26,7 +28,8 @@ export const renderItems = (tasks, $) => {
   }
 
   Object.values(tasks).forEach((task, index) => {
-    const row = createRow(task, index + 1);
+    const row = createRow(task);
     $.tBody.append(row);
   });
+  renumerateTable($.tBody);
 };

@@ -16,6 +16,7 @@ import control from './modules/control.js';
     control.submitFormData(generalVars);
     control.handleTaskInput(generalVars);
     control.handleResetFormButton(generalVars);
+    control.deleteRow(generalVars);
 
     //start method
     generalVars.userName = authorizeUser();
