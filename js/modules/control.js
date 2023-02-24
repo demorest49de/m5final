@@ -69,6 +69,7 @@ const deleteTask = ($) => {
     const target = e.target;
     if (target.closest('.btn.btn-danger')) {
       const row = target.closest('.table-light');
+      if(!confirm(`Вы действительно хотите удалить задачу "${row.querySelector('td:nth-child(3)').textContent}"?`)) return;
       row.remove();
 
       const storage = getStorage($.appName);
