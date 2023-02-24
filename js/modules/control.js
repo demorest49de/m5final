@@ -15,13 +15,13 @@ const submitFormData = ($) => {
     const task = {
       id: createElement.createId(),
       text: data.text,
-      status: 'В процессе',
+      status: false,
     };
     const user = $.user;
     user.tasks.push(task);
 
     const row = createRow(task);
-    udpateUserDataInStorage(storage, user);
+    udpateUserData(storage, user);
     saveStorge(storage, $.appName);
     $.tBody.append(row);
     renumerateTable($.tBody);
@@ -32,14 +32,15 @@ const submitFormData = ($) => {
   });
 };
 
-const udpateUserDataInStorage = (storage, user) => {
-  storage.data = storage.data.map(item => {
-    const {name, tasks} = item;
-    if (name === user.name) {
-      item.tasks = user.tasks;
+const udpateUserData = (storage, user) => {
+
+  for (const storageUser of storage.data) {
+    if (storageUser.name === user.name) {
+      storageUser.tasks = user.tasks;
+      return;
     }
-    return item;
-  });
+  }
+
   return storage;
 };
 
@@ -73,8 +74,8 @@ const deleteTask = ($) => {
       const storage = getStorage($.appName);
       const taskId = row.querySelector('td[data-id]').getAttribute('data-id');
       const user = getUser(storage, $);
-      user.tasks = removeTaskFromUser(user.tasks, taskId);
-      udpateUserDataInStorage(storage, user);
+      user.tasks = removeTask(user.tasks, taskId);
+      udpateUserData(storage, user);
       saveStorge(storage, $.appName);
 
       renumerateTable($.tBody);
@@ -88,18 +89,19 @@ const finishTask = ($) => {
     if (target.closest('.btn.btn-success')) {
       const row = target.closest('tr');
       row.classList.toggle('table-light');
+
       const success = row.classList.toggle('table-success');
-      const tdStatus = row.querySelector('td:nth-child(4)');
       row.querySelector('td:nth-child(3)').classList.toggle('text-crossed-out');
+      const tdStatus = row.querySelector('td:nth-child(4)');
       success ? tdStatus.textContent = 'Выполнена' : tdStatus.textContent = 'В процессе';
 
 
-      // const storage = getStorage($.appName);
-      // const taskId = row.querySelector('td[data-id]').getAttribute('data-id');
-      // const user = getUser(storage, $);
-      // user.tasks = removeTaskFromUser(user.tasks, taskId);
-      // udpateUserDataInStorage(storage, user);
-      // saveStorge(storage, $.appName);
+      const storage = getStorage($.appName);
+      const taskId = row.querySelector('td[data-id]').getAttribute('data-id');
+      const user = getUser(storage, $);
+      updateTask(user.tasks, taskId, success);
+      udpateUserData(storage, user);
+      saveStorge(storage, $.appName);
     }
   });
 };
@@ -113,9 +115,17 @@ const renumerateTable = (tBody) => {
   }
 };
 
-const removeTaskFromUser = (tasks, taskId) => {
+const removeTask = (tasks, taskId) => {
   tasks = tasks.filter(x => x.id !== taskId);
   return tasks;
+};
+
+const updateTask = (tasks, taskId, taskStatus) => {
+  for (const task of tasks) {
+    if(task.id === taskId){
+      task.status = taskStatus;
+    }
+  }
 };
 
 export default {

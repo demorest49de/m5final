@@ -79,7 +79,7 @@ const createRow = ({id, text, status}) => {
       <td class="hide-element" data-id="${id}"></td>
       <td></td>
       <td class="todo__task">${text}</td>
-      <td>${status}</td>
+      <td>${status ? 'Выполнена' : 'В процессе'}</td>
       <td>
         <button class="btn btn-danger"> Удалить </button>
         <button class="btn btn-success"> Завершить </button>
