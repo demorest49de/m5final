@@ -73,12 +73,12 @@ const createTableWrapper = () => {
 const createRow = ({id, text, status}) => {
 
   const tr = document.createElement('tr');
-  tr.classList.add('table-light');
+  tr.classList.add(`${status ? 'table-success' : 'table-light'}`);
   tr.insertAdjacentHTML('beforeend',
     `
       <td class="hide-element" data-id="${id}"></td>
       <td></td>
-      <td class="todo__task">${text}</td>
+      <td class="todo__task ${status ? 'text-crossed-out' : ''}">${text}</td>
       <td>${status ? 'Выполнена' : 'В процессе'}</td>
       <td>
         <button class="btn btn-danger"> Удалить </button>
