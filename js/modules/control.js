@@ -63,7 +63,7 @@ const handleResetFormButton = ($) => {
   });
 };
 
-const deleteRow = ($) => {
+const deleteTask = ($) => {
   $.tBody.addEventListener('click', e => {
     const target = e.target;
     if (target.closest('.btn.btn-danger')) {
@@ -78,6 +78,28 @@ const deleteRow = ($) => {
       saveStorge(storage, $.appName);
 
       renumerateTable($.tBody);
+    }
+  });
+};
+
+const finishTask = ($) => {
+  $.tBody.addEventListener('click', e => {
+    const target = e.target;
+    if (target.closest('.btn.btn-success')) {
+      const row = target.closest('tr');
+      row.classList.toggle('table-light');
+      const success = row.classList.toggle('table-success');
+      const tdStatus = row.querySelector('td:nth-child(4)');
+      row.querySelector('td:nth-child(3)').classList.toggle('text-crossed-out');
+      success ? tdStatus.textContent = 'Выполнена' : tdStatus.textContent = 'В процессе';
+
+
+      // const storage = getStorage($.appName);
+      // const taskId = row.querySelector('td[data-id]').getAttribute('data-id');
+      // const user = getUser(storage, $);
+      // user.tasks = removeTaskFromUser(user.tasks, taskId);
+      // udpateUserDataInStorage(storage, user);
+      // saveStorge(storage, $.appName);
     }
   });
 };
@@ -100,6 +122,7 @@ export default {
   submitFormData,
   handleTaskInput,
   handleResetFormButton,
-  deleteRow,
+  deleteTask,
   renumerateTable,
+  finishTask
 };

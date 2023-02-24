@@ -42,3 +42,7 @@ body {
 .todo__table-wrapper {
     min-width: 464px;
 }
+
+.text-crossed-out {
+    text-decoration: line-through;
+}
