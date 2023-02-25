@@ -68,7 +68,7 @@ const deleteTask = ($) => {
   $.tBody.addEventListener('click', e => {
     const target = e.target;
     if (target.closest('.btn.btn-danger')) {
-      const row = target.closest('.table-light');
+      const row = target.closest('tr');
       if (!confirm(`Вы действительно хотите удалить задачу "${row.querySelector('td:nth-child(3)').textContent}"?`)) return;
       row.remove();
 

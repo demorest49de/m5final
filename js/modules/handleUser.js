@@ -1,36 +1,42 @@
 import {saveStorge} from "./storage.js";
+import storage from "./storage.js";
 
 
-export const openAuthorizeWindow = () => {
+export const openAuthorizeWindow = ($) => {
 
   const userModal = new bootstrap.Modal('#userEnterModal');
   userModal.show();
-
+  $.userModal = userModal;
 };
-const handelYesBtn = ($) => {
+export const handelYesBtn = ($) => {
   const yesBtn = $.authModal.querySelector('.btn[data-button="yes"]');
   yesBtn.addEventListener('click', e => {
     const userName = $.authModal.querySelector('input.modal__input').value.trim();
     let textClue = $.authModal.querySelector('.modal__text');
-    return authorizeHandler(textClue, userName, yesBtn);
+    $.userName = authorizeHandler(textClue, userName, e.target);
+    if(!$.userName){
+      $.userName = '';
+      return;
+    }
+    $.userModal.hide();
+    storage.handleStorage($);
   });
-
-  $.userName = 'vasja';
 };
 
 const authorizeHandler = (textClue, userName, yesBtn) => {
+
   textClue.textContent = '';
   switch (true) {
     case userName.length <= 3:
 
       textClue.textContent = `введите больше 3 символов`;
-      return authorizeHandler(textClue, userName, yesBtn);
-    case userName.includes(' '):
 
+      return;
+    case userName.includes(' '):
       textClue.textContent = 'в имени не должно быть пробелов';
-      return authorizeHandler(textClue, userName, yesBtn);
+      return;
     default:
-      yesBtn.setAttribute('data-bs-dismiss', 'modal')
+      yesBtn.setAttribute('data-bs-dismiss', 'modal');
       return userName;
   }
 };

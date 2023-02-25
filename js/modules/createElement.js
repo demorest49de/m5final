@@ -111,12 +111,12 @@ const createUserEnterWindow = () => {
           </div>
           <div class="modal-body d-flex  justify-content-center">
               <label class="modal__label form-group me-3 mb-0">
-              <input class="modal__input form-control" type="text" name="text" 
+              <input class="modal__input form-control" type="text" name="text" value="vasja"
               placeholder="введите имя"></label>          
           </div>
           <div class="d-flex justify-content-center pb-3"><span class="modal__text"></span></div>
           <div class="modal-footer justify-content-center">
-            <button type="button" class="btn btn-primary" data-button="yes" > Сохранить </button>
+            <button type="button" class="btn btn-primary" data-button="yes"> Сохранить </button>
           </div>
         </div>
       </div>
