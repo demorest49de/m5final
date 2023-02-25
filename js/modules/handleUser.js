@@ -2,6 +2,7 @@ import {saveStorge} from "./storage.js";
 
 export const authorizeUser = () => {
 
+  const showUserModal = document.getElementsByTagName('#')
 
   // const userName = prompt(`Введите имя пользователя:`).trim();
   //

@@ -93,7 +93,37 @@ const createId = () => {
   return Math.random().toString().substring(2, 10);
 };
 
-
+const createUserEnterWindow = () => {
+  const window = document.createElement('div');
+  window.classList.add('modal', 'fade');
+  window.id = 'userEnterModal';
+  window.role = 'dialog';
+  window.tabIndex = -1;
+  window.setAttribute('aria', 'aria-labelledby');
+  window.setAttribute('aria-hidden', 'true');
+  window.insertAdjacentHTML('beforeend',
+    `
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    `);
+  console.log(': ', window);
+  return window;
+};
 
 export default {
   createLogo,
@@ -101,4 +131,5 @@ export default {
   createTableWrapper,
   createRow,
   createId,
+  createUserEnterWindow,
 };

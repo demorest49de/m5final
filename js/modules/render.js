@@ -1,5 +1,6 @@
 import createElement from './createElement.js';
 import control from './control.js';
+
 const {renumerateTable} = control;
 
 const {
@@ -7,6 +8,7 @@ const {
   createForm,
   createTableWrapper,
   createRow,
+  createUserEnterWindow,
 } = createElement;
 
 export const renderTodo = (app) => {
@@ -18,6 +20,9 @@ export const renderTodo = (app) => {
   const {tableWrapper: tWrapper, tBody} = tableWrapper;
 
   app.append(logo, form, tWrapper);
+  const body = document.querySelector('body');
+  const userEnterWindow = createUserEnterWindow();
+  body.append(userEnterWindow);
 
   return {saveBtn, clearBtn, tBody, form};
 };

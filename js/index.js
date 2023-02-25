@@ -23,6 +23,7 @@ import control from './modules/control.js';
     //start method
     generalVars.userName = authorizeUser();
     storage.handleStorage(generalVars);
+
   };
 
   window.todoAppInit = init;
