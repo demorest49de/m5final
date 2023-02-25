@@ -21,10 +21,10 @@ export const renderTodo = (app) => {
 
   app.append(logo, form, tWrapper);
   const body = document.querySelector('body');
-  const userEnterWindow = createUserEnterWindow();
-  body.append(userEnterWindow);
+  const authModal = createUserEnterWindow();
+  body.append(authModal);
 
-  return {saveBtn, clearBtn, tBody, form};
+  return {saveBtn, clearBtn, tBody, form, authModal: authModal};
 };
 
 export const renderItems = (tasks, $) => {

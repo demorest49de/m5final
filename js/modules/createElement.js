@@ -97,31 +97,29 @@ const createUserEnterWindow = () => {
   const window = document.createElement('div');
   window.classList.add('modal', 'fade');
   window.id = 'userEnterModal';
-  window.role = 'dialog';
   window.tabIndex = -1;
-  window.setAttribute('aria', 'aria-labelledby');
+  window.setAttribute('data-bs-keyboard', 'false');
+  window.setAttribute('data-bs-backdrop', 'static');
+  window.setAttribute('aria-labelledby', 'staticBackdropLabel');
   window.setAttribute('aria-hidden', 'true');
   window.insertAdjacentHTML('beforeend',
     `
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+          <div class="modal-header justify-content-center">
+            <h5 class="modal-title">Введите имя пользователя</h5>
           </div>
-          <div class="modal-body">
-            ...
+          <div class="modal-body d-flex  justify-content-center">
+              <label class="modal__label form-group me-3 mb-0">
+              <input class="modal__input form-control" type="text" name="text" 
+              placeholder="введите имя"></label>          
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-secondary" data-button="yes" data-bs-dismiss="modal"> Сохранить </button>
           </div>
         </div>
       </div>
     `);
-  console.log(': ', window);
   return window;
 };
 

@@ -9,8 +9,8 @@ import control from './modules/control.js';
     const todo = renderTodo(app);
 
     //variables
-    const {saveBtn, clearBtn, tBody, form} = todo;
-    const generalVars = {saveBtn, clearBtn, tBody, appName, app, form};
+    const {saveBtn, clearBtn, tBody, form, authModal} = todo;
+    const generalVars = {saveBtn, clearBtn, tBody, appName, app, form, authModal};
 
     //functionality
     control.submitFormData(generalVars);
@@ -21,7 +21,7 @@ import control from './modules/control.js';
     control.editTask(generalVars);
 
     //start method
-    generalVars.userName = authorizeUser();
+    generalVars.userName = authorizeUser(generalVars);
     storage.handleStorage(generalVars);
 
   };

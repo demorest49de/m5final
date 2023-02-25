@@ -1,21 +1,28 @@
 import {saveStorge} from "./storage.js";
 
-export const authorizeUser = () => {
 
-  const showUserModal = document.getElementsByTagName('#')
+export const authorizeUser = ($) => {
 
-  // const userName = prompt(`Введите имя пользователя:`).trim();
-  //
-  // switch (true) {
-  //   case userName.length <= 3:
-  //     alert(`введите больше 3 символов`);
-  //     return authorizeUser();
-  //   case userName.includes(' '):
-  //     alert('в имени не должно быть пробелов');
-  //     return authorizeUser();
-  //   default:
-  //     return userName;
-  // }
+  const userModal = new bootstrap.Modal('#userEnterModal');
+  userModal.show();
+
+  const yesBtn = $.authModal.querySelector('.btn[data-button="yes"]');
+  yesBtn.addEventListener('click', e => {
+    const userName = $.authModal.querySelector('input.modal__input').value.trim();
+
+    switch (true) {
+      case userName.length <= 3:
+        alert(`введите больше 3 символов`);
+        userModal.hide();
+        return authorizeUser($);
+      case userName.includes(' '):
+        alert('в имени не должно быть пробелов');
+        return authorizeUser($);
+      default:
+        return userName;
+    }
+  });
+
 
   return 'vasja';
 };
