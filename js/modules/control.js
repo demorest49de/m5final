@@ -86,6 +86,7 @@ const deleteTask = ($) => {
 
 const finishTask = ($) => {
   $.tBody.addEventListener('click', e => {
+    console.log(': ',$.userName);
     const target = e.target;
     if (target.closest('.btn.btn-success')) {
       const row = target.closest('tr');

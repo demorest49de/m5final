@@ -20,7 +20,7 @@ import control from './modules/control.js';
     control.deleteTask(generalVars);
     control.finishTask(generalVars);
     control.editTask(generalVars);
-    generalVars.userName = handelYesBtn(generalVars);
+    handelYesBtn(generalVars);
 
     //start method
     openAuthorizeWindow(generalVars);
