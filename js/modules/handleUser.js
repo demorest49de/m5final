@@ -5,8 +5,8 @@ import storage from "./storage.js";
 export const openAuthorizeWindow = ($) => {
 
   const userModal = new bootstrap.Modal('#userEnterModal');
-  userModal.show();
   $.userModal = userModal;
+  userModal.show();
 };
 export const handelYesBtn = ($) => {
   const yesBtn = $.authModal.querySelector('.btn[data-button="yes"]');
