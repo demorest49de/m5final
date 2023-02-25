@@ -81,6 +81,7 @@ const createRow = ({id, text, status}) => {
       <td class="todo__task ${status ? 'text-crossed-out' : ''}">${text}</td>
       <td>${status ? 'Выполнена' : 'В процессе'}</td>
       <td>
+        <button class="btn btn-info"> Редактировать </button>
         <button class="btn btn-danger"> Удалить </button>
         <button class="btn btn-success"> Завершить </button>
       </td>
@@ -91,6 +92,8 @@ const createRow = ({id, text, status}) => {
 const createId = () => {
   return Math.random().toString().substring(2, 10);
 };
+
+
 
 export default {
   createLogo,

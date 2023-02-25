@@ -69,7 +69,7 @@ const deleteTask = ($) => {
     const target = e.target;
     if (target.closest('.btn.btn-danger')) {
       const row = target.closest('.table-light');
-      if(!confirm(`Вы действительно хотите удалить задачу "${row.querySelector('td:nth-child(3)').textContent}"?`)) return;
+      if (!confirm(`Вы действительно хотите удалить задачу "${row.querySelector('td:nth-child(3)').textContent}"?`)) return;
       row.remove();
 
       const storage = getStorage($.appName);
@@ -100,9 +100,44 @@ const finishTask = ($) => {
       const storage = getStorage($.appName);
       const taskId = row.querySelector('td[data-id]').getAttribute('data-id');
       const user = getUser(storage, $);
-      updateTask(user.tasks, taskId, success);
+
+      for (const task of user.tasks) {
+        if (task.id === taskId) {
+          task.status = success;
+          break;
+        }
+      }
       udpateUserData(storage, user);
       saveStorge(storage, $.appName);
+    }
+  });
+};
+
+const editTask = ($) => {
+  $.tBody.addEventListener('click', e => {
+    const target = e.target;
+    if (target.closest('.btn.btn-info')) {
+      const td = target.closest('tr').querySelector('td:nth-child(3)');
+      td.setAttribute('contenteditable', 'true');
+      td.focus();
+      td.addEventListener('blur', e => {
+        td.removeAttribute('contenteditable');
+
+        const storage = getStorage($.appName);
+        const taskId = target.closest('tr').querySelector('td[data-id]').getAttribute('data-id');
+        console.log(': ',taskId);
+        const user = getUser(storage, $);
+
+        for (const task of user.tasks) {
+          if (task.id === taskId) {
+            task.text = td.textContent;
+            break;
+          }
+        }
+
+        udpateUserData(storage, user);
+        saveStorge(storage, $.appName);
+      });
     }
   });
 };
@@ -121,13 +156,21 @@ const removeTask = (tasks, taskId) => {
   return tasks;
 };
 
-const updateTask = (tasks, taskId, taskStatus) => {
-  for (const task of tasks) {
-    if(task.id === taskId){
-      task.status = taskStatus;
-    }
-  }
-};
+// const updateTask = (tasks, taskId, taskStatus) => {
+//   for (const task of tasks) {
+//     if (task.id === taskId) {
+//       task.status = taskStatus;
+//     }
+//   }
+// };
+//
+// const getTask = (tasks, taskId) => {
+//   for (const task of tasks) {
+//     if (task.id === taskId) {
+//       return task;
+//     }
+//   }
+// };
 
 export default {
   submitFormData,
@@ -135,5 +178,6 @@ export default {
   handleResetFormButton,
   deleteTask,
   renumerateTable,
-  finishTask
+  finishTask,
+  editTask
 };
