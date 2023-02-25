@@ -1,6 +1,6 @@
 import {renderTodo} from "./modules/render.js";
 import storage from "./modules/storage.js";
-import {authorizeUser} from './modules/handleUser.js';
+import {openAuthorizeWindow} from './modules/handleUser.js';
 import control from './modules/control.js';
 
 {
@@ -21,7 +21,7 @@ import control from './modules/control.js';
     control.editTask(generalVars);
 
     //start method
-    generalVars.userName = authorizeUser(generalVars);
+    generalVars.userName = openAuthorizeWindow(generalVars);
     storage.handleStorage(generalVars);
 
   };

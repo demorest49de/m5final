@@ -46,3 +46,7 @@ body {
 .text-crossed-out {
     text-decoration: line-through;
 }
+
+.modal__text{
+    color: darkred;
+}
