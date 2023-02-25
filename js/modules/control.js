@@ -157,22 +157,6 @@ const removeTask = (tasks, taskId) => {
   return tasks;
 };
 
-// const updateTask = (tasks, taskId, taskStatus) => {
-//   for (const task of tasks) {
-//     if (task.id === taskId) {
-//       task.status = taskStatus;
-//     }
-//   }
-// };
-//
-// const getTask = (tasks, taskId) => {
-//   for (const task of tasks) {
-//     if (task.id === taskId) {
-//       return task;
-//     }
-//   }
-// };
-
 export default {
   submitFormData,
   handleTaskInput,

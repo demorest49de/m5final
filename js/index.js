@@ -1,6 +1,6 @@
 import {renderTodo} from "./modules/render.js";
 import storage from "./modules/storage.js";
-import {openAuthorizeWindow, handelYesBtn} from './modules/handleUser.js';
+import {openAuthorizeWindow, handelYesBtn, handleInput} from './modules/handleUser.js';
 import control from './modules/control.js';
 
 {
@@ -21,12 +21,10 @@ import control from './modules/control.js';
     control.finishTask(generalVars);
     control.editTask(generalVars);
     handelYesBtn(generalVars);
+    handleInput(generalVars);
 
     //start method
     openAuthorizeWindow(generalVars);
-
-    // storage.handleStorage(generalVars);
-
   };
 
   window.todoAppInit = init;

@@ -14,12 +14,23 @@ export const handelYesBtn = ($) => {
     const userName = $.authModal.querySelector('input.modal__input').value.trim();
     let textClue = $.authModal.querySelector('.modal__text');
     $.userName = authorizeHandler(textClue, userName, e.target);
-    if(!$.userName){
+    if (!$.userName) {
       $.userName = '';
       return;
     }
     $.userModal.hide();
     storage.handleStorage($);
+  });
+};
+
+export const handleInput = ($) => {
+  const input = $.authModal.querySelector('.modal__input');
+
+  input.addEventListener('keypress', e => {
+    if (e.key === 'Enter') {
+      const btn = $.authModal.querySelector('.btn[data-button]');
+      btn.click();
+    }
   });
 };
 
