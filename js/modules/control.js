@@ -110,7 +110,9 @@ const finishTask = ($) => {
     const target = e.target;
     if (target.closest('.btn.btn-success')) {
       const row = target.closest('tr');
-      row.classList.toggle('table-light');
+
+      const tableClassAttr =  row.getAttribute('data-tableclass');
+      row.classList.toggle(tableClassAttr);
 
       const success = row.classList.toggle('table-success');
       row.querySelector('td:nth-child(3)').classList.toggle('text-crossed-out');

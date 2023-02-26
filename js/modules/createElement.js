@@ -43,9 +43,9 @@ const createForm = () => {
 const createSelect = (task) => {
   const select = document.createElement('select');
   select.classList.add(...task.className);
-  select.name='priority';
+  select.name = 'priority';
   select.setAttribute(task.aria.key, task.aria.value);
-  select.add(new Option('Приоритет',  undefined,true));
+  select.add(new Option('Приоритет', undefined, true));
   for (const [value, text] of task.options) {
     const option = new Option(text, value);
     select.add(option);
@@ -100,6 +100,7 @@ const createRow = ({id, text, status, priority}) => {
   const [priorityValue, priorityText] = priority;
   const tr = document.createElement('tr');
   tr.classList.add(`${status ? 'table-success' : priorityValue}`);
+  tr.setAttribute('data-tableClass', `${priorityValue}`);
   tr.insertAdjacentHTML('beforeend',
     `
       <td class="hide-element" data-id="${id}"></td>
