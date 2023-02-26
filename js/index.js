@@ -9,8 +9,8 @@ import control from './modules/control.js';
     const todo = renderTodo(app);
 
     //variables
-    const {saveBtn, clearBtn, tBody, form, authModal} = todo;
-    const generalVars = {saveBtn, clearBtn, tBody, appName, app, form, authModal};
+    const {saveBtn, clearBtn, tBody, form, authModal, select} = todo;
+    const generalVars = {saveBtn, clearBtn, tBody, appName, app, form, authModal, select};
 
 
     //functionality

@@ -24,9 +24,34 @@ const createForm = () => {
   label.append(input);
   const {saveBtn, clearBtn} = createButtons();
 
-  form.append(label, saveBtn, clearBtn);
+  const taskSelect = {
+    className: ['form__select', 'form-select'],
+    aria: {key: 'aria-label', value: 'Task importance'},
+    options: [
+      ['table-light', 'обычная'],
+      ['table-warning', 'важная'],
+      ['table-danger', 'срочная'],
+    ]
+  };
+  const select = createSelect(taskSelect);
 
-  return {form, saveBtn, clearBtn};
+  form.append(label, select, saveBtn, clearBtn);
+
+  return {form, saveBtn, clearBtn, select};
+};
+
+const createSelect = (task) => {
+  const select = document.createElement('select');
+  select.classList.add(...task.className);
+  select.name='priority';
+  select.setAttribute(task.aria.key, task.aria.value);
+  select.add(new Option('Приоритет',  undefined,true));
+  for (const [value, text] of task.options) {
+    const option = new Option(text, value);
+    select.add(option);
+  }
+
+  return select;
 };
 
 const createButtons = () => {
@@ -59,6 +84,7 @@ const createTableWrapper = () => {
           <th>№</th>
           <th>Задача</th>
           <th>Статус</th>
+          <th>Приоритет</th>
           <th>Действия</th>
         </tr>
       </thead>
@@ -70,16 +96,17 @@ const createTableWrapper = () => {
   return {tableWrapper, tBody};
 };
 
-const createRow = ({id, text, status}) => {
-
+const createRow = ({id, text, status, priority}) => {
+  const [priorityValue, priorityText] = priority;
   const tr = document.createElement('tr');
-  tr.classList.add(`${status ? 'table-success' : 'table-light'}`);
+  tr.classList.add(`${status ? 'table-success' : priorityValue}`);
   tr.insertAdjacentHTML('beforeend',
     `
       <td class="hide-element" data-id="${id}"></td>
       <td></td>
       <td class="todo__task ${status ? 'text-crossed-out' : ''}">${text}</td>
       <td>${status ? 'Выполнена' : 'В процессе'}</td>
+      <td>${priorityText}</td>
       <td>
         <button class="btn btn-info"> Редактировать </button>
         <button class="btn btn-danger"> Удалить </button>
@@ -111,7 +138,7 @@ const createUserEnterWindow = () => {
           </div>
           <div class="modal-body d-flex  justify-content-center">
               <label class="modal__label form-group me-3 mb-0">
-              <input class="modal__input form-control" tabindex="1" type="text" name="text"
+              <input class="modal__input form-control" tabindex="1" type="text" name="text" value="андрей"
               placeholder="введите имя"></label>          
           </div>
           <div class="d-flex justify-content-center pb-3"><span class="modal__text"></span></div>

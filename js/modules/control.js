@@ -11,11 +11,31 @@ const submitFormData = ($) => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
+    const options = $.form.querySelectorAll('.form__select[name="priority"] option');
+    let selectedOption;
+
+    for (let i = 0; i < options.length; i++) {
+      console.log(': ',options[i].selected);
+      if (i === 0 && options[i].selected) {
+        selectedOption = options[i + 1];
+        break;
+      }
+      if(options[i].selected){
+        selectedOption = options[i + 1];
+        break;
+      }
+    }
+
+    for (let i = 0; i < options.length; i++) {
+      options[i].selected = options[i].defaultSelected;
+    }
+
     const storage = getStorage($.appName);
     const task = {
       id: createElement.createId(),
       text: data.text,
       status: false,
+      priority: [selectedOption.value, selectedOption.text],
     };
     const user = $.user;
     user.tasks.push(task);
@@ -86,7 +106,7 @@ const deleteTask = ($) => {
 
 const finishTask = ($) => {
   $.tBody.addEventListener('click', e => {
-    console.log(': ',$.userName);
+
     const target = e.target;
     if (target.closest('.btn.btn-success')) {
       const row = target.closest('tr');
@@ -126,7 +146,7 @@ const editTask = ($) => {
 
         const storage = getStorage($.appName);
         const taskId = target.closest('tr').querySelector('td[data-id]').getAttribute('data-id');
-        console.log(': ',taskId);
+        console.log(': ', taskId);
         const user = getUser(storage, $);
 
         for (const task of user.tasks) {

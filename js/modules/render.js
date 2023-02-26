@@ -14,7 +14,7 @@ const {
 export const renderTodo = (app) => {
   const logo = createLogo();
   const formBlock = createForm();
-  const {form, saveBtn, clearBtn} = formBlock;
+  const {form, saveBtn, clearBtn, select} = formBlock;
   const tableWrapper = createTableWrapper();
 
   const {tableWrapper: tWrapper, tBody} = tableWrapper;
@@ -24,7 +24,7 @@ export const renderTodo = (app) => {
   const authModal = createUserEnterWindow();
   body.append(authModal);
 
-  return {saveBtn, clearBtn, tBody, form, authModal: authModal};
+  return {saveBtn, clearBtn, tBody, form, authModal: authModal, select};
 };
 
 export const renderItems = (tasks, $) => {
