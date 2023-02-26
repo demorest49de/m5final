@@ -21,7 +21,7 @@ const submitFormData = ($) => {
         break;
       }
       if(options[i].selected){
-        selectedOption = options[i + 1];
+        selectedOption = options[i];
         break;
       }
     }
