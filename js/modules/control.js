@@ -114,11 +114,14 @@ const finishTask = ($) => {
       const tableClassAttr =  row.getAttribute('data-tableclass');
       row.classList.toggle(tableClassAttr);
 
+      const editBtn = row.querySelector('.btn.btn-info');
+
       const success = row.classList.toggle('table-success');
       row.querySelector('td:nth-child(3)').classList.toggle('text-crossed-out');
       const tdStatus = row.querySelector('td:nth-child(4)');
       success ? tdStatus.textContent = 'Выполнена' : tdStatus.textContent = 'В процессе';
-
+      success ? target.textContent = 'Возобновить' :  target.textContent = 'Завершить';
+      success ? editBtn.setAttribute('disabled', '') : editBtn.removeAttribute('disabled');
 
       const storage = getStorage($.appName);
       const taskId = row.querySelector('td[data-id]').getAttribute('data-id');

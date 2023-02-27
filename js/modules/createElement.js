@@ -109,9 +109,9 @@ const createRow = ({id, text, status, priority}) => {
       <td>${status ? 'Выполнена' : 'В процессе'}</td>
       <td>${priorityText}</td>
       <td>
-        <button class="btn btn-info"> Редактировать </button>
+        <button class="btn btn-info" ${status ? 'disabled' : ''}> Редактировать </button>
         <button class="btn btn-danger"> Удалить </button>
-        <button class="btn btn-success"> Завершить </button>
+        <button class="btn btn-success"> ${status ? 'Возобновить' : 'Завершить'} </button>
       </td>
     `);
   return tr;
@@ -139,7 +139,7 @@ const createUserEnterWindow = () => {
           </div>
           <div class="modal-body d-flex  justify-content-center">
               <label class="modal__label form-group me-3 mb-0">
-              <input class="modal__input form-control" tabindex="1" type="text" name="text" value="андрей"
+              <input class="modal__input form-control" tabindex="1" type="text" name="text"
               placeholder="введите имя"></label>          
           </div>
           <div class="d-flex justify-content-center pb-3"><span class="modal__text"></span></div>

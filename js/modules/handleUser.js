@@ -8,6 +8,7 @@ export const openAuthorizeWindow = ($) => {
   $.userModal = userModal;
   userModal.show();
 };
+
 export const handelYesBtn = ($) => {
   const yesBtn = $.authModal.querySelector('.btn[data-button="yes"]');
   yesBtn.addEventListener('click', e => {
