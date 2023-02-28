@@ -4,32 +4,34 @@ import storage from "./storage.js";
 
 export const openAuthorizeWindow = ($) => {
 
-  const userModal = new bootstrap.Modal('#userEnterModal');
-  $.userModal = userModal;
-  userModal.show();
+  // const userModal = new bootstrap.Modal('#userEnterModal');
+  // userModal.show();
+
+  const i =document.querySelector('.modal__input.form-control');
+  console.log(': ',i);
+  i.focus();
 };
 
 export const handelYesBtn = ($) => {
-  const yesBtn = $.authModal.querySelector('.btn[data-button="yes"]');
+  const yesBtn = $.modal.querySelector('.btn[data-button="yes"]');
   yesBtn.addEventListener('click', e => {
-    const userName = $.authModal.querySelector('input.modal__input').value.trim();
-    let textClue = $.authModal.querySelector('.modal__text');
+    const userName = $.modal.querySelector('input.modal__input').value.trim();
+    let textClue = $.modal.querySelector('.modal__text');
     $.userName = authorizeHandler(textClue, userName, e.target);
     if (!$.userName) {
       $.userName = '';
       return;
     }
-    $.userModal.hide();
     storage.handleStorage($);
   });
 };
 
 export const handleInput = ($) => {
-  const input = $.authModal.querySelector('.modal__input');
+  const input = $.modal.querySelector('.modal__input');
 
   input.addEventListener('keypress', e => {
     if (e.key === 'Enter') {
-      const btn = $.authModal.querySelector('.btn[data-button]');
+      const btn = $.modal.querySelector('.btn[data-button]');
       btn.click();
     }
   });

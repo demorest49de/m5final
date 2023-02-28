@@ -8,7 +8,7 @@ const {
   createForm,
   createTableWrapper,
   createRow,
-  createUserEnterWindow,
+  createModal,
 } = createElement;
 
 export const renderTodo = (app) => {
@@ -20,11 +20,12 @@ export const renderTodo = (app) => {
   const {tableWrapper: tWrapper, tBody} = tableWrapper;
 
   app.append(logo, form, tWrapper);
-  const body = document.querySelector('body');
-  const authModal = createUserEnterWindow();
-  body.append(authModal);
 
-  return {saveBtn, clearBtn, tBody, form, authModal: authModal, select};
+  const body = document.querySelector('body');
+  const modal = createModal();
+  body.append(modal);
+
+  return {saveBtn, clearBtn, tBody, form, modal, select};
 };
 
 export const renderItems = (tasks, $) => {

@@ -9,8 +9,8 @@ import control from './modules/control.js';
     const todo = renderTodo(app);
 
     //variables
-    const {saveBtn, clearBtn, tBody, form, authModal, select} = todo;
-    const generalVars = {saveBtn, clearBtn, tBody, appName, app, form, authModal, select};
+    const {saveBtn, clearBtn, tBody, form, modal, select} = todo;
+    const generalVars = {saveBtn, clearBtn, tBody, appName, app, form, modal, select};
 
 
     //functionality
@@ -20,8 +20,8 @@ import control from './modules/control.js';
     control.deleteTask(generalVars);
     control.finishTask(generalVars);
     control.editTask(generalVars);
-    handelYesBtn(generalVars);
-    handleInput(generalVars);
+    // handelYesBtn(generalVars);
+    // handleInput(generalVars);
 
     //start method
     openAuthorizeWindow(generalVars);

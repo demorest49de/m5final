@@ -121,18 +121,19 @@ const createId = () => {
   return Math.random().toString().substring(2, 10);
 };
 
-const createUserEnterWindow = () => {
-  const window = document.createElement('div');
-  window.classList.add('modal', 'fade');
-  window.id = 'userEnterModal';
-  window.tabIndex = -1;
-  window.setAttribute('data-bs-keyboard', 'false');
-  window.setAttribute('data-bs-backdrop', 'static');
-  window.setAttribute('aria-labelledby', 'staticBackdropLabel');
-  window.setAttribute('aria-hidden', 'true');
-  window.insertAdjacentHTML('beforeend',
+const createModal = () => {
+  const modal = document.createElement('div');
+  modal.classList.add('modal', 'fade');
+  modal.id = 'userEnterModal';
+  modal.tabIndex = -1;
+  modal.setAttribute('data-bs-keyboard', 'false');
+  modal.setAttribute('data-bs-backdrop', 'static');
+  modal.setAttribute('aria-labelledby', 'staticBackdropLabel');
+  modal.setAttribute('aria-hidden', 'true');
+
+  modal.insertAdjacentHTML('beforeend',
     `
-      <div class="modal-dialog">
+      <div class="modal-dialog" id="modal-dialog">
         <div class="modal-content">
           <div class="modal-header justify-content-center">
             <h5 class="modal-title">Введите имя пользователя</h5>
@@ -140,7 +141,7 @@ const createUserEnterWindow = () => {
           <div class="modal-body d-flex  justify-content-center">
               <label class="modal__label form-group me-3 mb-0">
               <input class="modal__input form-control" tabindex="1" type="text" name="text"
-              placeholder="введите имя"></label>          
+              placeholder="введите имя"></label>
           </div>
           <div class="d-flex justify-content-center pb-3"><span class="modal__text"></span></div>
           <div class="modal-footer justify-content-center">
@@ -150,7 +151,7 @@ const createUserEnterWindow = () => {
         </div>
       </div>
     `);
-  return window;
+  return modal;
 };
 
 export default {
@@ -159,5 +160,5 @@ export default {
   createTableWrapper,
   createRow,
   createId,
-  createUserEnterWindow,
+  createModal,
 };

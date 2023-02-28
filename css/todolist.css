@@ -50,3 +50,14 @@ body {
 .modal__text{
     color: darkred;
 }
+
+#userEnterModal{
+    display: block;
+    opacity: 1;
+    background: rgba(0, 0, 0, .5);
+}
+
+#modal-dialog{
+    top: 150px;
+}
+
