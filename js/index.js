@@ -1,5 +1,4 @@
 import {renderTodo} from "./modules/render.js";
-import storage from "./modules/storage.js";
 import {handelYesBtn, handleInput} from './modules/handleUser.js';
 import control from './modules/control.js';
 
