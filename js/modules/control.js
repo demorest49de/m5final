@@ -1,4 +1,4 @@
-import {getStorage, saveStorge} from "./storage.js";
+import {getStorage, saveStorge} from './storage.js';
 import createElement from './createElement.js';
 import {getUser} from './handleUser.js';
 
@@ -15,12 +15,12 @@ const submitFormData = ($) => {
     let selectedOption;
 
     for (let i = 0; i < options.length; i++) {
-      console.log(': ',options[i].selected);
+      console.log(': ', options[i].selected);
       if (i === 0 && options[i].selected) {
         selectedOption = options[i + 1];
         break;
       }
-      if(options[i].selected){
+      if (options[i].selected) {
         selectedOption = options[i];
         break;
       }
@@ -53,7 +53,6 @@ const submitFormData = ($) => {
 };
 
 const udpateUserData = (storage, user) => {
-
   for (const storageUser of storage.data) {
     if (storageUser.name === user.name) {
       storageUser.tasks = user.tasks;
@@ -65,7 +64,7 @@ const udpateUserData = (storage, user) => {
 };
 
 const handleTaskInput = ($) => {
-  $.form.text.addEventListener("input", e => {
+  $.form.text.addEventListener('input', e => {
     const taskText = e.target;
     if (taskText.value.length > 0) {
       $.saveBtn.removeAttribute('disabled');
@@ -106,12 +105,11 @@ const deleteTask = ($) => {
 
 const finishTask = ($) => {
   $.tBody.addEventListener('click', e => {
-
     const target = e.target;
     if (target.closest('.btn.btn-success')) {
       const row = target.closest('tr');
 
-      const tableClassAttr =  row.getAttribute('data-tableclass');
+      const tableClassAttr = row.getAttribute('data-tableclass');
       row.classList.toggle(tableClassAttr);
 
       const editBtn = row.querySelector('.btn.btn-info');
@@ -120,7 +118,7 @@ const finishTask = ($) => {
       row.querySelector('td:nth-child(3)').classList.toggle('text-crossed-out');
       const tdStatus = row.querySelector('td:nth-child(4)');
       success ? tdStatus.textContent = 'Выполнена' : tdStatus.textContent = 'В процессе';
-      success ? target.textContent = 'Возобновить' :  target.textContent = 'Завершить';
+      success ? target.textContent = 'Возобновить' : target.textContent = 'Завершить';
       success ? editBtn.setAttribute('disabled', '') : editBtn.removeAttribute('disabled');
 
       const storage = getStorage($.appName);
@@ -189,5 +187,5 @@ export default {
   deleteTask,
   renumerateTable,
   finishTask,
-  editTask
+  editTask,
 };

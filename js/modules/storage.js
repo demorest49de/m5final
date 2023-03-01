@@ -1,9 +1,7 @@
 import {renderItems} from './render.js';
-import {getUser} from "./handleUser.js";
+import {getUser} from './handleUser.js';
 
-export const getStorage = (appName) => {
-  return JSON.parse(localStorage.getItem(appName)) || {data: []};
-};
+export const getStorage = (appName) => JSON.parse(localStorage.getItem(appName)) || {data: []};
 
 export const saveStorge = (storage, appName) => {
   localStorage.setItem(appName, JSON.stringify(storage));

@@ -95,6 +95,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 
 .form__title {
@@ -111,6 +112,10 @@ body{
     background-color: transparent;
     border: 0;
     opacity: .8;
+}
+
+.form__message{
+    min-width: 207px;
 }
 
 .modal__text {

@@ -31,7 +31,7 @@ const createForm = () => {
       ['table-light', 'обычная'],
       ['table-warning', 'важная'],
       ['table-danger', 'срочная'],
-    ]
+    ],
   };
   const select = createSelect(taskSelect);
 
@@ -76,9 +76,9 @@ const createTableWrapper = () => {
   tableWrapper.classList.add('todo__table-wrapper');
 
   const table = document.createElement('table');
-  table.classList.add('todo__table', 'table', 'table-hover', 'table-bordered',);
-  table.insertAdjacentHTML("beforeend",
-    `
+  table.classList.add('todo__table', 'table', 'table-hover', 'table-bordered');
+  table.insertAdjacentHTML('beforeend',
+      `
       <thead>
         <tr>
           <th>№</th>
@@ -102,7 +102,7 @@ const createRow = ({id, text, status, priority}) => {
   tr.classList.add(`${status ? 'table-success' : priorityValue}`);
   tr.setAttribute('data-tableClass', `${priorityValue}`);
   tr.insertAdjacentHTML('beforeend',
-    `
+      `
       <td class="hide-element" data-id="${id}"></td>
       <td></td>
       <td class="todo__task ${status ? 'text-crossed-out' : ''}">${text}</td>
@@ -117,9 +117,7 @@ const createRow = ({id, text, status, priority}) => {
   return tr;
 };
 
-const createId = () => {
-  return Math.random().toString().substring(2, 10);
-};
+const createId = () => Math.random().toString().substring(2, 10);
 
 const createModal = () => {
   const modalOverlay = document.createElement('div');
@@ -129,16 +127,17 @@ const createModal = () => {
   modal.classList.add('modal-form', 'form');
 
   modal.insertAdjacentHTML('beforeend',
-    `
+      `
       <div class="form__header">
           <h1 class="form__title">Введите имя пользователя</h1>
           <button type="button" class="btn-close" aria-label="Close"></button>
       </div>
         <div class="form__body">
             <label class="form__label form-group me-3 mb-0">
-            <input class="form__input form-control" 
-             tabindex="1" type="text" name="text"
-            placeholder="введите имя"></label>
+              <input class="form__input form-control" 
+              tabindex="1" type="text" name="text"
+              placeholder="введите имя">
+            </label>
             <div class="form__message"><span class="modal__text"></span></div>
         </div>
         <div class="form__footer">

@@ -12,7 +12,6 @@ const {
 } = createElement;
 
 export const renderTodo = (app) => {
-
   const logo = createLogo();
   const formBlock = createForm();
   const {form: taskForm, saveBtn, clearBtn, select} = formBlock;

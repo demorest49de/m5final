@@ -1,12 +1,12 @@
-import {saveStorge} from "./storage.js";
-import storage from "./storage.js";
+import {saveStorge} from './storage.js';
+import storage from './storage.js';
 
 export const handelYesBtn = ($) => {
   const yesBtn = $.modal.querySelector('.btn[data-button="yes"]');
-  console.log(': ',yesBtn);
+  console.log(': ', yesBtn);
   yesBtn.addEventListener('click', e => {
     const userName = $.modal.querySelector('input.modal__input').value.trim();
-    let textClue = $.modal.querySelector('.modal__text');
+    const textClue = $.modal.querySelector('.modal__text');
     $.userName = authorizeHandler(textClue, userName, e.target);
     if (!$.userName) {
       $.userName = '';
@@ -28,7 +28,6 @@ export const handleInput = ($) => {
 };
 
 const authorizeHandler = (textClue, userName, yesBtn) => {
-
   textClue.textContent = '';
   switch (true) {
     case userName.length <= 3:
@@ -48,7 +47,6 @@ const authorizeHandler = (textClue, userName, yesBtn) => {
 export const getUser = (storage, $) => {
   let user;
   Object.values(storage.data).forEach(userItem => {
-
     if (userItem.name === $.userName) {
       user = userItem;
       return;
@@ -58,7 +56,7 @@ export const getUser = (storage, $) => {
   if (user) {
     return user;
   } else {
-    const newUser = {name: $.userName, tasks: [],};
+    const newUser = {name: $.userName, tasks: []};
     storage.data.push(newUser);
     saveStorge(storage, $.appName);
     return newUser;

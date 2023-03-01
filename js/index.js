@@ -1,4 +1,4 @@
-import {renderTodo} from "./modules/render.js";
+import {renderTodo} from './modules/render.js';
 import {handelYesBtn, handleInput} from './modules/handleUser.js';
 import control from './modules/control.js';
 
@@ -7,12 +7,12 @@ import control from './modules/control.js';
     const app = document.querySelector(appSelector);
     const todo = renderTodo(app);
 
-    //variables
+    // variables
     const {saveBtn, clearBtn, tBody, taskForm: form, select, modalOverlay} = todo;
     const generalVars = {saveBtn, clearBtn, tBody, appName, app, form, select, modalOverlay};
 
 
-    //functionality
+    // functionality
     control.submitFormData(generalVars);
     control.handleTaskInput(generalVars);
     control.handleResetFormButton(generalVars);
