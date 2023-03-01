@@ -1,5 +1,5 @@
 import {renderTodo} from './modules/render.js';
-import {handelYesBtn, handleInput} from './modules/handleUser.js';
+import {handleModal, handleInput} from './modules/handleUser.js';
 import control from './modules/control.js';
 
 {
@@ -19,7 +19,7 @@ import control from './modules/control.js';
     control.deleteTask(generalVars);
     control.finishTask(generalVars);
     control.editTask(generalVars);
-    // handelYesBtn(generalVars);
+    handleModal(generalVars);
     // handleInput(generalVars);
 
     modalOverlay.querySelector('.form__input').focus();

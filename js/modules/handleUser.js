@@ -1,12 +1,12 @@
 import {saveStorge} from './storage.js';
 import storage from './storage.js';
 
-export const handelYesBtn = ($) => {
-  const yesBtn = $.modal.querySelector('.btn[data-button="yes"]');
+export const handleModal = ($) => {
+  const yesBtn = $.modalOverlay.querySelector('.btn[data-button="save"]');
   console.log(': ', yesBtn);
   yesBtn.addEventListener('click', e => {
-    const userName = $.modal.querySelector('input.modal__input').value.trim();
-    const textClue = $.modal.querySelector('.modal__text');
+    const userName = $.modalOverlay.querySelector('input.modal__input').value.trim();
+    const textClue = $.modalOverlay.querySelector('.modal__text');
     $.userName = authorizeHandler(textClue, userName, e.target);
     if (!$.userName) {
       $.userName = '';

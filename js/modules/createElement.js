@@ -142,7 +142,7 @@ const createModal = () => {
         </div>
         <div class="form__footer">
           <button type="button" class="btn btn-primary form__submit" 
-          tabindex="2 " data-button="yes"> Сохранить </button>
+          tabindex="2 " data-button="save"> Сохранить </button>
         </div>
       </div>
     `);
