@@ -12,20 +12,21 @@ const {
 } = createElement;
 
 export const renderTodo = (app) => {
+
   const logo = createLogo();
   const formBlock = createForm();
-  const {form, saveBtn, clearBtn, select} = formBlock;
+  const {form: taskForm, saveBtn, clearBtn, select} = formBlock;
   const tableWrapper = createTableWrapper();
 
   const {tableWrapper: tWrapper, tBody} = tableWrapper;
 
-  app.append(logo, form, tWrapper);
+  app.append(logo, taskForm, tWrapper);
 
   const body = document.querySelector('body');
-  const modal = createModal();
-  body.append(modal);
+  const modalOverlay = createModal();
+  body.append(modalOverlay);
 
-  return {saveBtn, clearBtn, tBody, form, modal, select};
+  return {saveBtn, clearBtn, tBody, taskForm, select, modalOverlay};
 };
 
 export const renderItems = (tasks, $) => {

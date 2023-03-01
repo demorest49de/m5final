@@ -122,36 +122,33 @@ const createId = () => {
 };
 
 const createModal = () => {
-  const modal = document.createElement('div');
-  modal.classList.add('modal', 'fade');
-  modal.id = 'userEnterModal';
-  modal.tabIndex = -1;
-  modal.setAttribute('data-bs-keyboard', 'false');
-  modal.setAttribute('data-bs-backdrop', 'static');
-  modal.setAttribute('aria-labelledby', 'staticBackdropLabel');
-  modal.setAttribute('aria-hidden', 'true');
+  const modalOverlay = document.createElement('div');
+  modalOverlay.classList.add('modal-overlay');
+
+  const modal = document.createElement('form');
+  modal.classList.add('modal-form', 'form');
 
   modal.insertAdjacentHTML('beforeend',
     `
-      <div class="modal-dialog" id="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header justify-content-center">
-            <h5 class="modal-title">Введите имя пользователя</h5>
-          </div>
-          <div class="modal-body d-flex  justify-content-center">
-              <label class="modal__label form-group me-3 mb-0">
-              <input class="modal__input form-control" tabindex="1" type="text" name="text"
-              placeholder="введите имя"></label>
-          </div>
-          <div class="d-flex justify-content-center pb-3"><span class="modal__text"></span></div>
-          <div class="modal-footer justify-content-center">
-            <button type="button" class="btn btn-primary" 
-            tabindex="2 " data-button="yes"> Сохранить </button>
-          </div>
+      <div class="form__header">
+          <h1 class="form__title">Введите имя пользователя</h1>
+          <button type="button" class="btn-close" aria-label="Close"></button>
+      </div>
+        <div class="form__body">
+            <label class="form__label form-group me-3 mb-0">
+            <input class="form__input form-control" 
+             tabindex="1" type="text" name="text"
+            placeholder="введите имя"></label>
+            <div class="form__message"><span class="modal__text"></span></div>
+        </div>
+        <div class="form__footer">
+          <button type="button" class="btn btn-primary form__submit" 
+          tabindex="2 " data-button="yes"> Сохранить </button>
         </div>
       </div>
     `);
-  return modal;
+  modalOverlay.append(modal);
+  return modalOverlay;
 };
 
 export default {

@@ -1,19 +1,9 @@
 import {saveStorge} from "./storage.js";
 import storage from "./storage.js";
 
-
-export const openAuthorizeWindow = ($) => {
-
-  // const userModal = new bootstrap.Modal('#userEnterModal');
-  // userModal.show();
-
-  const i =document.querySelector('.modal__input.form-control');
-  console.log(': ',i);
-  i.focus();
-};
-
 export const handelYesBtn = ($) => {
   const yesBtn = $.modal.querySelector('.btn[data-button="yes"]');
+  console.log(': ',yesBtn);
   yesBtn.addEventListener('click', e => {
     const userName = $.modal.querySelector('input.modal__input').value.trim();
     let textClue = $.modal.querySelector('.modal__text');

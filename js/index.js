@@ -1,6 +1,6 @@
 import {renderTodo} from "./modules/render.js";
 import storage from "./modules/storage.js";
-import {openAuthorizeWindow, handelYesBtn, handleInput} from './modules/handleUser.js';
+import {handelYesBtn, handleInput} from './modules/handleUser.js';
 import control from './modules/control.js';
 
 {
@@ -9,8 +9,8 @@ import control from './modules/control.js';
     const todo = renderTodo(app);
 
     //variables
-    const {saveBtn, clearBtn, tBody, form, modal, select} = todo;
-    const generalVars = {saveBtn, clearBtn, tBody, appName, app, form, modal, select};
+    const {saveBtn, clearBtn, tBody, taskForm: form, select, modalOverlay} = todo;
+    const generalVars = {saveBtn, clearBtn, tBody, appName, app, form, select, modalOverlay};
 
 
     //functionality
@@ -23,8 +23,7 @@ import control from './modules/control.js';
     // handelYesBtn(generalVars);
     // handleInput(generalVars);
 
-    //start method
-    openAuthorizeWindow(generalVars);
+    modalOverlay.querySelector('.form__input').focus();
   };
 
   window.todoAppInit = init;

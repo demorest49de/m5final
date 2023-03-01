@@ -12,10 +12,16 @@
     font-display: swap;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+body{
+    position: relative;
+}
+
+.todo {
+    max-width: var(--appContainer-Width);
+    left: calc(50% - var(--appContainer-Width) / 2);
+    top: 35%;
+    position: absolute;
+    text-align: center;
 }
 
 .todo__title {
@@ -47,17 +53,67 @@ body {
     text-decoration: line-through;
 }
 
-.modal__text{
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.modal-form {
+    min-width: var(--modal-form);
+    background-color: white;
+    border-radius: 15px;
+    position: absolute;
+    top: 10%;
+    left: calc(50% - var(--modal-form) / 2);
+    /*color: #212529;*/
+}
+
+.form__header,
+.form__body,
+.form__footer{
+    display: flex;
+    padding: 15px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.form__header{
+    justify-content: space-between;
+}
+
+.form__footer{
+    border-bottom: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.form__body{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form__title {
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: 500;
+    opacity: .7;
+}
+
+.form__close{
+    background-image: url("../img/del.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: 0;
+    opacity: .8;
+}
+
+.modal__text {
     color: darkred;
 }
-
-#userEnterModal{
-    display: block;
-    opacity: 1;
-    background: rgba(0, 0, 0, .5);
-}
-
-#modal-dialog{
-    top: 150px;
-}
-
