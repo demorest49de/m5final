@@ -116,6 +116,7 @@ body{
 
 .form__message{
     min-width: 207px;
+    min-height: 20px;
 }
 
 .modal__text {
