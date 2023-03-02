@@ -22,10 +22,10 @@ export const renderTodo = (app) => {
   app.append(logo, taskForm, tWrapper);
 
   const body = document.querySelector('body');
-  const modalOverlay = createModal();
+  const {modalOverlay, modalForm} = createModal();
   body.append(modalOverlay);
 
-  return {saveBtn, clearBtn, tBody, taskForm, select, modalOverlay};
+  return {saveBtn, clearBtn, tBody, taskForm, select, modalOverlay, modalForm};
 };
 
 export const renderItems = (tasks, $) => {

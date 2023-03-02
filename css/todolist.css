@@ -12,12 +12,12 @@
     font-display: swap;
 }
 
-body{
+body {
     position: relative;
 }
 
 .todo {
-    max-width: var(--appContainer-Width);
+    min-width: var(--appContainer-Width);
     left: calc(50% - var(--appContainer-Width) / 2);
     top: 35%;
     position: absolute;
@@ -75,23 +75,23 @@ body{
 
 .form__header,
 .form__body,
-.form__footer{
+.form__footer {
     display: flex;
     padding: 15px;
     border-bottom: 1px solid #dee2e6;
 }
 
-.form__header{
+.form__header {
     justify-content: space-between;
 }
 
-.form__footer{
+.form__footer {
     border-bottom: 0;
     justify-content: center;
     align-items: center;
 }
 
-.form__body{
+.form__body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -104,7 +104,7 @@ body{
     font-weight: 500;
 }
 
-.form__close{
+.form__close {
     background-image: url("../img/del.svg");
     background-size: contain;
     background-repeat: no-repeat;
@@ -114,11 +114,29 @@ body{
     opacity: .8;
 }
 
-.form__message{
+.form__message {
     min-width: 207px;
     min-height: 20px;
 }
 
 .modal__text {
     color: darkred;
+}
+
+.modal-overlay.is-invisible {
+    visibility: hidden;
+}
+
+.todo__actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.todo__form .form__select {
+    max-width: 180px;
+}
+
+.todo__form .form__input{
+    min-width: 220px;
 }

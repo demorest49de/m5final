@@ -2,28 +2,21 @@ import {saveStorge} from './storage.js';
 import storage from './storage.js';
 
 export const handleModal = ($) => {
-  const yesBtn = $.modalOverlay.querySelector('.btn[data-button="save"]');
-  console.log(': ', yesBtn);
-  yesBtn.addEventListener('click', e => {
-    const userName = $.modalOverlay.querySelector('input.modal__input').value.trim();
-    const textClue = $.modalOverlay.querySelector('.modal__text');
+  $.modalForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+
+    const userName = data.text.trim();
+    console.log('userName: ', userName);
+    const textClue = $.modalForm.querySelector('.form__text');
     $.userName = authorizeHandler(textClue, userName, e.target);
     if (!$.userName) {
       $.userName = '';
       return;
     }
+    $.modalOverlay.remove();
     storage.handleStorage($);
-  });
-};
-
-export const handleInput = ($) => {
-  const input = $.modal.querySelector('.modal__input');
-
-  input.addEventListener('keypress', e => {
-    if (e.key === 'Enter') {
-      const btn = $.modal.querySelector('.btn[data-button]');
-      btn.click();
-    }
   });
 };
 

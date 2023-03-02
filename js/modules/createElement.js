@@ -13,7 +13,7 @@ const createForm = () => {
   form.method = 'post';
 
   const label = document.createElement('label');
-  label.classList.add('form__label', 'form-group', 'me-3', 'mb-0');
+  label.classList.add('form__label', 'form-group');
 
   const input = document.createElement('input');
   input.classList.add('form__input', 'form-control');
@@ -56,7 +56,7 @@ const createSelect = (task) => {
 
 const createButtons = () => {
   const saveBtn = document.createElement('button');
-  saveBtn.classList.add('form__submit', 'btn', 'btn-primary', 'me-3');
+  saveBtn.classList.add('form__submit', 'btn', 'btn-primary');
   saveBtn.type = 'submit';
   saveBtn.textContent = ' Сохранить ';
   saveBtn.setAttribute('disabled', '');
@@ -108,7 +108,7 @@ const createRow = ({id, text, status, priority}) => {
       <td class="todo__task ${status ? 'text-crossed-out' : ''}">${text}</td>
       <td>${status ? 'Выполнена' : 'В процессе'}</td>
       <td>${priorityText}</td>
-      <td>
+      <td class="todo__actions">
         <button class="btn btn-info" ${status ? 'disabled' : ''}> Редактировать </button>
         <button class="btn btn-danger"> Удалить </button>
         <button class="btn btn-success"> ${status ? 'Возобновить' : 'Завершить'} </button>
@@ -123,31 +123,30 @@ const createModal = () => {
   const modalOverlay = document.createElement('div');
   modalOverlay.classList.add('modal-overlay');
 
-  const modal = document.createElement('form');
-  modal.classList.add('modal-form', 'form');
+  const modalForm = document.createElement('form');
+  modalForm.classList.add('modal-form', 'form');
 
-  modal.insertAdjacentHTML('beforeend',
+  modalForm.insertAdjacentHTML('beforeend',
       `
       <div class="form__header">
           <h1 class="form__title">Введите имя пользователя</h1>
-          <button type="button" class="btn-close" aria-label="Close"></button>
       </div>
         <div class="form__body">
-            <label class="form__label form-group me-3 mb-0">
+            <label class="form__label form-group">
               <input class="form__input form-control" 
-              tabindex="1" type="text" name="text"
+              tabindex="1" type="text" name="text" value="андрей"
               placeholder="введите имя">
             </label>
-            <div class="form__message"><span class="modal__text"></span></div>
+            <div class="form__message"><span class="form__text"></span></div>
         </div>
         <div class="form__footer">
-          <button type="button" class="btn btn-primary form__submit" 
-          tabindex="2 " data-button="save"> Сохранить </button>
+          <button type="submit" class="btn btn-primary form__submit" 
+          tabindex="2"> Сохранить </button>
         </div>
       </div>
     `);
-  modalOverlay.append(modal);
-  return modalOverlay;
+  modalOverlay.append(modalForm);
+  return {modalOverlay, modalForm};
 };
 
 export default {

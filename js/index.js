@@ -1,5 +1,5 @@
 import {renderTodo} from './modules/render.js';
-import {handleModal, handleInput} from './modules/handleUser.js';
+import {handleModal} from './modules/handleUser.js';
 import control from './modules/control.js';
 
 {
@@ -8,8 +8,8 @@ import control from './modules/control.js';
     const todo = renderTodo(app);
 
     // variables
-    const {saveBtn, clearBtn, tBody, taskForm: form, select, modalOverlay} = todo;
-    const generalVars = {saveBtn, clearBtn, tBody, appName, app, form, select, modalOverlay};
+    const {saveBtn, clearBtn, tBody, taskForm: form, select, modalOverlay, modalForm} = todo;
+    const generalVars = {saveBtn, clearBtn, tBody, appName, app, form, select, modalOverlay, modalForm};
 
 
     // functionality
@@ -20,7 +20,6 @@ import control from './modules/control.js';
     control.finishTask(generalVars);
     control.editTask(generalVars);
     handleModal(generalVars);
-    // handleInput(generalVars);
 
     modalOverlay.querySelector('.form__input').focus();
   };
