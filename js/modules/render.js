@@ -38,4 +38,13 @@ export const renderItems = (tasks, $) => {
     $.tBody.append(row);
   });
   renumerateTable($.tBody);
+  handleAppCenter($);
+};
+
+export const handleAppCenter = ($) => {
+  const appWidth = $.app.clientWidth;
+  console.log(': ', screen.width);
+  const resultWidth = (screen.width / 2) - (appWidth / 2);
+  console.log(': ', resultWidth);
+  $.app.style.left = `${resultWidth}px`;
 };
