@@ -1,7 +1,7 @@
 import {getStorage, saveStorge} from './storage.js';
 import createElement from './createElement.js';
 import {getUser} from './handleUser.js';
-import {handleAppCenter} from './render.js';
+import {renderAppCenter} from './render.js';
 
 const {createRow} = createElement;
 
@@ -46,7 +46,7 @@ const submitFormData = ($) => {
     saveStorge(storage, $.appName);
     $.tBody.append(row);
     renumerateTable($.tBody);
-    handleAppCenter($);
+    renderAppCenter($);
 
     saveStorge(storage, $.appName);
     $.form.reset();
@@ -101,7 +101,7 @@ const deleteTask = ($) => {
       saveStorge(storage, $.appName);
 
       renumerateTable($.tBody);
-      handleAppCenter($);
+      renderAppCenter($);
     }
   });
 };
@@ -163,7 +163,7 @@ const editTask = ($) => {
 
         udpateUserData(storage, user);
         saveStorge(storage, $.appName);
-        handleAppCenter($);
+        renderAppCenter($);
       });
     }
   });
