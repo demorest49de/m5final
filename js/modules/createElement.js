@@ -108,13 +108,13 @@ const createRow = ({id, text, status, priority}) => {
       <td class="todo__task ${status ? 'text-crossed-out' : ''}">${text}</td>
       <td>${status ? 'Выполнена' : 'В процессе'}</td>
       <td>${priorityText}</td>
-      <td class="todo__action-btn" id="todo__action-btn-edit">
+      <td class="todo__action-btn">
         <button class="btn btn-info" ${status ? 'disabled' : ''}> Редактировать </button>
       </td>
-      <td class="todo__action-btn" id="todo__action-btn-del">
+      <td class="todo__action-btn">
         <button class="btn btn-danger"> Удалить </button>
       </td>
-      <td class="todo__action-btn" id="todo__action-btn-finish">
+      <td class="todo__action-btn">
         <button class="btn btn-success"> ${status ? 'Возобновить' : 'Завершить'} </button>
       </td>
     `);

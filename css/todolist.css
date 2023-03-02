@@ -138,7 +138,7 @@ body {
 }
 
 .todo__form .form__input {
-    min-width: 220px;
+    min-width: 240px;
 }
 
 .todo__action-btn:not(:nth-last-child(1)) {
