@@ -137,6 +137,10 @@ body {
     max-width: 180px;
 }
 
-.todo__form .form__input{
+.todo__form .form__input {
     min-width: 220px;
+}
+
+.todo__action-btn:not(:nth-last-child(1)) {
+    border-right-style: hidden;
 }

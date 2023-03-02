@@ -85,7 +85,7 @@ const createTableWrapper = () => {
           <th>Задача</th>
           <th>Статус</th>
           <th>Приоритет</th>
-          <th>Действия</th>
+          <th colspan="4">Действия</th>
         </tr>
       </thead>
     `);
@@ -108,9 +108,13 @@ const createRow = ({id, text, status, priority}) => {
       <td class="todo__task ${status ? 'text-crossed-out' : ''}">${text}</td>
       <td>${status ? 'Выполнена' : 'В процессе'}</td>
       <td>${priorityText}</td>
-      <td class="todo__actions">
+      <td class="todo__action-btn" id="todo__action-btn-edit">
         <button class="btn btn-info" ${status ? 'disabled' : ''}> Редактировать </button>
+      </td>
+      <td class="todo__action-btn" id="todo__action-btn-del">
         <button class="btn btn-danger"> Удалить </button>
+      </td>
+      <td class="todo__action-btn" id="todo__action-btn-finish">
         <button class="btn btn-success"> ${status ? 'Возобновить' : 'Завершить'} </button>
       </td>
     `);
