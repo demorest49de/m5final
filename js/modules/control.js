@@ -149,7 +149,6 @@ const editTask = ($) => {
 
         const storage = getStorage($.appName);
         const taskId = target.closest('tr').querySelector('td[data-id]').getAttribute('data-id');
-        console.log(': ', taskId);
         const user = getUser(storage, $);
 
         for (const task of user.tasks) {
@@ -161,6 +160,13 @@ const editTask = ($) => {
 
         udpateUserData(storage, user);
         saveStorge(storage, $.appName);
+
+        const appWidth = $.app.clientWidth;
+        console.log(': ',screen.width);
+        const resultWidth = (screen.width/2) - (appWidth/2);
+        console.log(': ',resultWidth);
+        $.app.style.left = `${resultWidth}px`;
+        $.app.style.color = `#FFF`;
       });
     }
   });
