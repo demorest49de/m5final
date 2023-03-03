@@ -98,15 +98,25 @@ const deleteTask = ($) => {
       document.body.append(delDialog);
       setTimeout(showWindow, 500, $);
 
-
       delDialog.querySelector('.form__body').remove();
       delDialog.querySelector('.form__title')
         .textContent = `Вы действительно хотите удалить задачу "${row.querySelector('td:nth-child(3)').textContent}"?`;
+      const yesBtn = delDialog.querySelector('.form__submit');
+      yesBtn.type= 'button';
+      yesBtn.textContent = "Да";
+      yesBtn.classList.remove('form__submit');
+      yesBtn.classList.add('modal-yes');
 
-      closeDelDialog($);
+      const noBtn = document.createElement('button');
+      noBtn.type= 'button';
+      noBtn.textContent = "Нет";
+      noBtn.classList.add('modal-no');
+      noBtn.tabIndex = 3;
+
+      handleYesButton($);
+      handleCloseDelDialog($);
 
 
-      // if (!confirm(`Вы действительно хотите удалить задачу "${row.querySelector('td:nth-child(3)').textContent}"?`)) return;
       // row.remove();
       //
       // const storage = getStorage($.appName);
@@ -122,10 +132,9 @@ const deleteTask = ($) => {
   });
 };
 
-const closeDelDialog = ($) => {
+const handleCloseDelDialog = ($) => {
   $.modalOverlay.addEventListener('click', e => {
     const target = e.target;
-    console.log(': ', target);
     if (target === $.modalOverlay) {
       $.modalOverlay.querySelector('.modal-form').style.top = '80px';
       $.modalOverlay.classList.remove('is-visible');
@@ -219,5 +228,5 @@ export default {
   renumerateTable,
   finishTask,
   editTask,
-  closeDelDialog
+  closeDelDialog: handleCloseDelDialog
 };
