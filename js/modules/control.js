@@ -97,11 +97,9 @@ const deleteTask = ($) => {
       $.modalOverlay = delDialog;
       document.body.append(delDialog);
       setTimeout(showWindow, 500, $);
-      renderCenter($);
       // $.modalOverlay.classList.add('is-visible');//
-      //если делать без setTimeout то плавной анимации не будет.
-
       delDialog.querySelector('.form__body').remove();
+
       delDialog.querySelector('.form__title')
         .textContent = `Вы действительно хотите удалить задачу "${row.querySelector('td:nth-child(3)').textContent}"?`;
       const yesBtn = delDialog.querySelector('.form__submit');
@@ -109,17 +107,22 @@ const deleteTask = ($) => {
       yesBtn.textContent = "Да";
       yesBtn.classList.remove('form__submit', 'btn-primary');
       yesBtn.classList.add('modal-yes', 'btn-danger');
-
+      yesBtn.style.width = '56px';
       const noBtn = document.createElement('button');
+
       noBtn.type = 'button';
       noBtn.textContent = "Нет";
       noBtn.classList.add('modal-no');
       noBtn.tabIndex = 3;
       noBtn.classList.add('btn', 'btn-warning');
+      noBtn.style.width = '56px';
       const footer = delDialog.querySelector('.form__footer');
       footer.append(noBtn);
       footer.style.gap = '15px';
-
+      const form = delDialog.querySelector('.form');
+      $.clientWidth = form.clientWidth;
+      //если делать без setTimeout то плавной анимации не будет.
+      renderCenter($);
 
       // handleYesButton($);
       handleCloseDelDialog($);

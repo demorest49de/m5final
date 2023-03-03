@@ -53,10 +53,9 @@ const renderAppCenter = ($) => {
 };
 
 const renderWindowCenter = ($) => {
-  const windowWidth = document.querySelector('.modal-form').clientWidth;
-  console.log(': ', document.querySelector('.modal-form'));
-  console.log(': ', screen.width);
-  console.log(': ',windowWidth);
-  const resultWidth = (screen.width / 2) - (windowWidth / 2);
-  $.modalForm.style.left = `${resultWidth}px`;
+  const windowModal = document.querySelector('.modal-form');
+  console.log(': ',$.clientWidth);
+
+  const resultWidth = (screen.width / 2) - ($.clientWidth / 2);
+  windowModal.style.left = `${resultWidth}px`;
 };
