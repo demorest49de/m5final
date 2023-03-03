@@ -3,9 +3,13 @@ import storage from './storage.js';
 
 export const handleModal = ($) => {
 
-  const showStartWindow = () =>{
+  const showStartWindow = () => {
     $.modalOverlay.classList.add('is-visible');
-  }
+  };
+
+  const removeStartWindow = () => {
+    $.modalOverlay.remove();
+  };
 
   setTimeout(showStartWindow, 500);
   $.modalForm.addEventListener('submit', e => {
@@ -21,7 +25,10 @@ export const handleModal = ($) => {
       $.userName = '';
       return;
     }
-    $.modalOverlay.remove();
+
+    $.modalOverlay.classList.remove('is-visible');
+    $.modalForm.style.top = '80px';
+    setTimeout(removeStartWindow, 2000);
     storage.handleStorage($);
   });
 };
