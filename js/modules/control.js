@@ -2,7 +2,7 @@ import {getStorage, saveStorge} from './storage.js';
 import create from './createElement.js';
 import {getUser} from './handleUser.js';
 import {renderAppCenter} from './render.js';
-import {showStartWindow} from './handleUser.js';
+import {showWindow, removeWindow} from './handleUser.js';
 
 const {createRow, createModal} = create;
 
@@ -96,8 +96,7 @@ const deleteTask = ($) => {
       const {modalOverlay: delDialog} = createModal();
       $.modalOverlay = delDialog;
       document.body.append(delDialog);
-
-      setTimeout(showStartWindow, 500, $);
+      setTimeout(showWindow, 500, $);
 
 
       delDialog.querySelector('.form__body').remove();
@@ -130,6 +129,7 @@ const closeDelDialog = ($) => {
     if (target === $.modalOverlay) {
       $.modalOverlay.querySelector('.modal-form').style.top = '80px';
       $.modalOverlay.classList.remove('is-visible');
+      setTimeout(removeWindow, 500, $);
     }
   });
 };
