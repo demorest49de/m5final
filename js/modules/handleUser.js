@@ -3,7 +3,7 @@ import storage from './storage.js';
 
 
 export const showStartWindow = ($) => {
-  console.log(': ',$);
+  console.log(': ',$.modalOverlay);
   $.modalOverlay.classList.add('is-visible');
 };
 
@@ -31,7 +31,7 @@ export const handleModal = ($) => {
 
     $.modalOverlay.classList.remove('is-visible');
     $.modalForm.style.top = '80px';
-    setTimeout(removeStartWindow, 2000, $);
+    setTimeout(removeStartWindow, 500, $);
     storage.handleStorage($);
   });
 };

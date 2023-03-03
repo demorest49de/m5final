@@ -2,6 +2,7 @@ import {getStorage, saveStorge} from './storage.js';
 import create from './createElement.js';
 import {getUser} from './handleUser.js';
 import {renderAppCenter} from './render.js';
+import {showStartWindow} from './handleUser.js';
 
 const {createRow, createModal} = create;
 
@@ -91,15 +92,21 @@ const deleteTask = ($) => {
     if (target.closest('.btn.btn-danger')) {
       const row = target.closest('tr');
 
+
       const {modalOverlay: delDialog} = createModal();
-      delDialog.classList.add('is-visible');
-      console.log(': ',delDialog);
+      $.modalOverlay = delDialog;
       document.body.append(delDialog);
+
+      setTimeout(showStartWindow, 500, $);
+
+
       delDialog.querySelector('.form__body').remove();
       delDialog.querySelector('.form__title')
         .textContent = `Вы действительно хотите удалить задачу "${row.querySelector('td:nth-child(3)').textContent}"?`;
-      $.modalOverlay = delDialog;
+
       closeDelDialog($);
+
+
       // if (!confirm(`Вы действительно хотите удалить задачу "${row.querySelector('td:nth-child(3)').textContent}"?`)) return;
       // row.remove();
       //
@@ -119,8 +126,9 @@ const deleteTask = ($) => {
 const closeDelDialog = ($) => {
   $.modalOverlay.addEventListener('click', e => {
     const target = e.target;
-    console.log(': ',target);
-    if(target === $.modalOverlay){
+    console.log(': ', target);
+    if (target === $.modalOverlay) {
+      $.modalOverlay.querySelector('.modal-form').style.top = '80px';
       $.modalOverlay.classList.remove('is-visible');
     }
   });
