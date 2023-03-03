@@ -124,29 +124,33 @@ const deleteTask = ($) => {
       //если делать без setTimeout то плавной анимации не будет.
       renderCenter($);
 
-      // handleYesButton($);
+      handleYesButton($, row, yesBtn);
       handleCloseDelDialog($);
-
-
-      // row.remove();
-      //
-      // const storage = getStorage($.appName);
-      // const taskId = row.querySelector('td[data-id]').getAttribute('data-id');
-      // const user = getUser(storage, $);
-      // user.tasks = removeTask(user.tasks, taskId);
-      // udpateUserData(storage, user);
-      // saveStorge(storage, $.appName);
-      //
-      // renumerateTable($.tBody);
-      // renderAppCenter($);
     }
+  });
+};
+
+const handleYesButton = ($, row, yesBtn) => {
+  yesBtn.addEventListener('click', e => {
+    row.remove();
+
+    const storage = getStorage($.appName);
+    const taskId = row.querySelector('td[data-id]').getAttribute('data-id');
+    const user = getUser(storage, $);
+    user.tasks = removeTask(user.tasks, taskId);
+    udpateUserData(storage, user);
+    saveStorge(storage, $.appName);
+    renumerateTable($.tBody);
+    $.modalOverlay.querySelector('.modal-form').style.top = '80px';
+    $.modalOverlay.classList.remove('is-visible');
+    setTimeout(removeWindow, 500, $);
   });
 };
 
 const handleCloseDelDialog = ($) => {
   $.modalOverlay.addEventListener('click', e => {
     const target = e.target;
-    if (target === $.modalOverlay) {
+    if (target === $.modalOverlay || target.closest('.modal-no')) {
       $.modalOverlay.querySelector('.modal-form').style.top = '80px';
       $.modalOverlay.classList.remove('is-visible');
       setTimeout(removeWindow, 500, $);
