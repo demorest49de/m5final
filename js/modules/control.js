@@ -1,9 +1,9 @@
 import {getStorage, saveStorge} from './storage.js';
-import createElement from './createElement.js';
+import create from './createElement.js';
 import {getUser} from './handleUser.js';
 import {renderAppCenter} from './render.js';
 
-const {createRow} = createElement;
+const {createRow, createModal} = create;
 
 const submitFormData = ($) => {
   $.form.addEventListener('submit', e => {
@@ -33,7 +33,7 @@ const submitFormData = ($) => {
 
     const storage = getStorage($.appName);
     const task = {
-      id: createElement.createId(),
+      id: create.createId(),
       text: data.text,
       status: false,
       priority: [selectedOption.value, selectedOption.text],
@@ -90,18 +90,26 @@ const deleteTask = ($) => {
     const target = e.target;
     if (target.closest('.btn.btn-danger')) {
       const row = target.closest('tr');
-      if (!confirm(`Вы действительно хотите удалить задачу "${row.querySelector('td:nth-child(3)').textContent}"?`)) return;
-      row.remove();
 
-      const storage = getStorage($.appName);
-      const taskId = row.querySelector('td[data-id]').getAttribute('data-id');
-      const user = getUser(storage, $);
-      user.tasks = removeTask(user.tasks, taskId);
-      udpateUserData(storage, user);
-      saveStorge(storage, $.appName);
+      const {modalOverlay: delDialog} = createModal();
+      document.body.append(delDialog);
+      delDialog.classList.add('is-visible');
+      delDialog.querySelector('.form__body').remove();
+      delDialog.querySelector('.form__title')
+        .textContent = `Вы действительно хотите удалить задачу "${row.querySelector('td:nth-child(3)').textContent}"?`;
 
-      renumerateTable($.tBody);
-      renderAppCenter($);
+      // if (!confirm(`Вы действительно хотите удалить задачу "${row.querySelector('td:nth-child(3)').textContent}"?`)) return;
+      // row.remove();
+      //
+      // const storage = getStorage($.appName);
+      // const taskId = row.querySelector('td[data-id]').getAttribute('data-id');
+      // const user = getUser(storage, $);
+      // user.tasks = removeTask(user.tasks, taskId);
+      // udpateUserData(storage, user);
+      // saveStorge(storage, $.appName);
+      //
+      // renumerateTable($.tBody);
+      // renderAppCenter($);
     }
   });
 };
