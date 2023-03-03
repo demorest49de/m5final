@@ -38,13 +38,25 @@ export const renderItems = (tasks, $) => {
     $.tBody.append(row);
   });
   renumerateTable($.tBody);
-  renderAppCenter($);
+  renderCenter($);
 };
 
-export const renderAppCenter = ($) => {
+export const renderCenter = ($) => {
+  renderAppCenter($);
+  renderWindowCenter($);
+};
+
+const renderAppCenter = ($) => {
   const appWidth = $.app.clientWidth;
-  console.log(': ', screen.width);
   const resultWidth = (screen.width / 2) - (appWidth / 2);
-  console.log(': ', resultWidth);
   $.app.style.left = `${resultWidth}px`;
+};
+
+const renderWindowCenter = ($) => {
+  const windowWidth = document.querySelector('.modal-form').clientWidth;
+  console.log(': ', document.querySelector('.modal-form'));
+  console.log(': ', screen.width);
+  console.log(': ',windowWidth);
+  const resultWidth = (screen.width / 2) - (windowWidth / 2);
+  $.modalForm.style.left = `${resultWidth}px`;
 };

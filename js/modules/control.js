@@ -1,7 +1,7 @@
 import {getStorage, saveStorge} from './storage.js';
 import create from './createElement.js';
 import {getUser} from './handleUser.js';
-import {renderAppCenter} from './render.js';
+import {renderCenter} from './render.js';
 import {showWindow, removeWindow} from './handleUser.js';
 
 const {createRow, createModal} = create;
@@ -47,7 +47,7 @@ const submitFormData = ($) => {
     saveStorge(storage, $.appName);
     $.tBody.append(row);
     renumerateTable($.tBody);
-    renderAppCenter($);
+    renderCenter($);
 
     saveStorge(storage, $.appName);
     $.form.reset();
@@ -97,7 +97,7 @@ const deleteTask = ($) => {
       $.modalOverlay = delDialog;
       document.body.append(delDialog);
       setTimeout(showWindow, 500, $);
-
+      renderCenter($);
       // $.modalOverlay.classList.add('is-visible');//
       //если делать без setTimeout то плавной анимации не будет.
 
@@ -208,7 +208,7 @@ const editTask = ($) => {
 
         udpateUserData(storage, user);
         saveStorge(storage, $.appName);
-        renderAppCenter($);
+        renderCenter($);
       });
     }
   });

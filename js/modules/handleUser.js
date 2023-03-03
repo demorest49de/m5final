@@ -3,7 +3,6 @@ import storage from './storage.js';
 
 
 export const showWindow = ($) => {
-  console.log(': ',$.modalOverlay);
   $.modalOverlay.classList.add('is-visible');
 };
 
