@@ -2,6 +2,12 @@ import {saveStorge} from './storage.js';
 import storage from './storage.js';
 
 export const handleModal = ($) => {
+
+  const showStartWindow = () =>{
+    $.modalOverlay.classList.add('is-visible');
+  }
+
+  setTimeout(showStartWindow, 500);
   $.modalForm.addEventListener('submit', e => {
     e.preventDefault();
     const formData = new FormData(e.target);
