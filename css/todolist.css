@@ -63,10 +63,12 @@ body {
     position: absolute;
     opacity: 0;
     transition: 1s ease-in-out;
+    visibility: hidden;
 }
 
 .modal-overlay.is-visible {
     opacity: 1;
+    visibility: visible;
 }
 
 .modal-form {

@@ -92,12 +92,14 @@ const deleteTask = ($) => {
       const row = target.closest('tr');
 
       const {modalOverlay: delDialog} = createModal();
-      document.body.append(delDialog);
       delDialog.classList.add('is-visible');
+      console.log(': ',delDialog);
+      document.body.append(delDialog);
       delDialog.querySelector('.form__body').remove();
       delDialog.querySelector('.form__title')
         .textContent = `Вы действительно хотите удалить задачу "${row.querySelector('td:nth-child(3)').textContent}"?`;
-
+      $.modalOverlay = delDialog;
+      closeDelDialog($);
       // if (!confirm(`Вы действительно хотите удалить задачу "${row.querySelector('td:nth-child(3)').textContent}"?`)) return;
       // row.remove();
       //
@@ -110,6 +112,16 @@ const deleteTask = ($) => {
       //
       // renumerateTable($.tBody);
       // renderAppCenter($);
+    }
+  });
+};
+
+const closeDelDialog = ($) => {
+  $.modalOverlay.addEventListener('click', e => {
+    const target = e.target;
+    console.log(': ',target);
+    if(target === $.modalOverlay){
+      $.modalOverlay.classList.remove('is-visible');
     }
   });
 };
@@ -199,4 +211,5 @@ export default {
   renumerateTable,
   finishTask,
   editTask,
+  closeDelDialog
 };

@@ -22,7 +22,6 @@ import control from './modules/control.js';
     handleModal(generalVars);
 
 
-
     modalOverlay.querySelector('.form__input').focus();
   };
 

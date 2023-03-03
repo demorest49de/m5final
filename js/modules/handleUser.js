@@ -1,17 +1,20 @@
 import {saveStorge} from './storage.js';
 import storage from './storage.js';
 
+
+export const showStartWindow = ($) => {
+  console.log(': ',$);
+  $.modalOverlay.classList.add('is-visible');
+};
+
+export const removeStartWindow = ($) => {
+  $.modalOverlay.remove();
+};
+
 export const handleModal = ($) => {
 
-  const showStartWindow = () => {
-    $.modalOverlay.classList.add('is-visible');
-  };
+  setTimeout(showStartWindow,500, $);
 
-  const removeStartWindow = () => {
-    $.modalOverlay.remove();
-  };
-
-  setTimeout(showStartWindow, 500);
   $.modalForm.addEventListener('submit', e => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -28,7 +31,7 @@ export const handleModal = ($) => {
 
     $.modalOverlay.classList.remove('is-visible');
     $.modalForm.style.top = '80px';
-    setTimeout(removeStartWindow, 2000);
+    setTimeout(removeStartWindow, 2000, $);
     storage.handleStorage($);
   });
 };
